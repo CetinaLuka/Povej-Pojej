@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Pojej In Povej</string>
+
+    <!-- Login fragment -->
+    <string name="login_title">Prijava</string>
+    <string name="login_text">Prijavite se s svojim Google računom</string>
+    <string name="login_button_text">PRIJAVA</string>
+</resources>
