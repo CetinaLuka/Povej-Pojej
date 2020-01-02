@@ -48,5 +48,9 @@ dependencies {
     //picasso
     implementation 'com.squareup.picasso:picasso:2.71828'
 
+    //discrete recycer view
     implementation 'com.yarolegovich:discrete-scrollview:1.4.9'
+
+    //material search bar
+    implementation 'com.github.mancj:MaterialSearchBar:0.8.2'
 }

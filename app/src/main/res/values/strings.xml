@@ -10,4 +10,5 @@
     <!-- Main screen fragment -->
     <string name="main_screen_suggested_text">Priporočene restavracije za vas</string>
     <string name="main_screen_suggested_2_text">Priporočene restavracije v bližini</string>
+    <string name="main_screen_search_hint">Vpišite ime restavracije</string>
 </resources>
