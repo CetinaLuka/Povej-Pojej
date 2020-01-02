@@ -12,6 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
+        android:transitionName="header"
+        android:id="@+id/main_screen_header"
         android:background="@color/colorPrimary">
 
         <TextView
@@ -78,6 +80,7 @@
 <!--            app:layout_constraintTop_toBottomOf="@+id/textView" />-->
         <com.mancj.materialsearchbar.MaterialSearchBar
             android:id="@+id/searchBar"
+            android:transitionName="search_bar"
             style="@style/MaterialSearchBarLight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -90,6 +93,7 @@
             app:mt_hint="@string/main_screen_search_hint"
             app:mt_maxSuggestionsCount="10"
             app:mt_speechMode="false"
+            app:mt_placeholder="Picerija, grill..."
             app:mt_roundedSearchBarEnabled="false"
             app:mt_navIconEnabled="false"/>
     </androidx.constraintlayout.widget.ConstraintLayout>

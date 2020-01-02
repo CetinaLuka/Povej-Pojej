@@ -1,12 +1,12 @@
-package feri.itk.pojejinpovej
+package feri.itk.pojejinpovej.Adapters
 
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
+import feri.itk.pojejinpovej.R
 import kotlinx.android.synthetic.main.suggestion_recycler_row.view.*
 
 class SuggestionsRecyclerAdapter(list: List<String>): RecyclerView.Adapter<SuggestionsViewHolder>(){

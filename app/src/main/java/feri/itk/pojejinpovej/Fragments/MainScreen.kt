@@ -6,13 +6,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.FragmentNavigator
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
-import androidx.recyclerview.widget.SnapHelper
 import com.yarolegovich.discretescrollview.transform.Pivot
 import com.yarolegovich.discretescrollview.transform.ScaleTransformer
 import feri.itk.pojejinpovej.R
-import feri.itk.pojejinpovej.SuggestionsRecyclerAdapter
+import feri.itk.pojejinpovej.Adapters.SuggestionsRecyclerAdapter
 import kotlinx.android.synthetic.main.fragment_main_screen.*
 
 /**
@@ -32,10 +35,21 @@ class MainScreen : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupSuggestedRestaurantsList()
         setupSecondSuggestedRestaurantsList()
+
+        searchBar.setOnClickListener {
+            val extras = FragmentNavigatorExtras(
+                searchBar to "search_bar",
+                main_screen_header to "header")
+            view.findNavController().navigate(R.id.action_mainScreen_to_searchFragment,
+                null, // Bundle of args
+                null, // NavOptions
+                extras)
+        }
     }
     fun setupSuggestedRestaurantsList(){
         val restaurants = arrayListOf<String>("Baščaršija", "Ancora", "Piano", "Alf", "Takos", "Papagayo")
-        val suggestedRestaurantsAdapter = SuggestionsRecyclerAdapter(restaurants)
+        val suggestedRestaurantsAdapter =
+            SuggestionsRecyclerAdapter(restaurants)
         val suggestionsRecyclerView = main_screen_suggestion_list
         val layoutManager = LinearLayoutManager(context)
         layoutManager.orientation = LinearLayoutManager.HORIZONTAL
@@ -46,7 +60,8 @@ class MainScreen : Fragment() {
     }
     fun setupSecondSuggestedRestaurantsList(){
         val restaurants = arrayListOf<String>("Baščaršija", "Ancora", "Piano", "Alf", "Takos", "Papagayo")
-        val suggestedRestaurantsAdapter = SuggestionsRecyclerAdapter(restaurants)
+        val suggestedRestaurantsAdapter =
+            SuggestionsRecyclerAdapter(restaurants)
         val suggestionsRecyclerView = main_screen_second_suggestion_list
 //        val layoutManager = LinearLayoutManager(context)
 //        layoutManager.orientation = LinearLayoutManager.HORIZONTAL

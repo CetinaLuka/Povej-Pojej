@@ -11,4 +11,7 @@
     <string name="main_screen_suggested_text">Priporočene restavracije za vas</string>
     <string name="main_screen_suggested_2_text">Priporočene restavracije v bližini</string>
     <string name="main_screen_search_hint">Vpišite ime restavracije</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
