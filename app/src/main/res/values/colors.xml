@@ -6,4 +6,6 @@
     <color name="whiteText">#FFFFFF</color>
     <color name="primaryText">#000000</color>
     <color name="lightText">#000000</color>
+    <color name="restaurantOpen">#4CAF50</color>
+    <color name="restaurantClosed">#f73f52</color>
 </resources>

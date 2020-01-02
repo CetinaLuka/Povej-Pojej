@@ -1,4 +1,4 @@
-package feri.itk.pojejinpovej
+package feri.itk.pojejinpovej.Fragments
 
 
 import android.os.Bundle
@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import feri.itk.pojejinpovej.R
 
 /**
  * A simple [Fragment] subclass.

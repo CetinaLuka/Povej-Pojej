@@ -44,4 +44,9 @@ dependencies {
 
     //implementation 'com.sdsmdg.harjot:longshadows:1.0.1'
     implementation 'com.qhutch.elevationimageview:elevationimageview:2.4'
+
+    //picasso
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
+    implementation 'com.yarolegovich:discrete-scrollview:1.4.9'
 }

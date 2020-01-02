@@ -3,11 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/login">
+    app:startDestination="@id/mainScreen">
 
     <fragment
         android:id="@+id/login"
-        android:name="feri.itk.pojejinpovej.login"
+        android:name="feri.itk.pojejinpovej.Fragments.login"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" />
+    <fragment
+        android:id="@+id/mainScreen"
+        android:name="feri.itk.pojejinpovej.Fragments.MainScreen"
+        android:label="fragment_main_screen"
+        tools:layout="@layout/fragment_main_screen" >
+        <action
+            android:id="@+id/action_mainScreen_to_login"
+            app:destination="@id/login" />
+    </fragment>
 </navigation>
