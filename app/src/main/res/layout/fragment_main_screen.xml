@@ -29,6 +29,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
+            android:id="@+id/main_screen_account_button"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginEnd="8dp"
@@ -44,22 +45,22 @@
 
         <com.mancj.materialsearchbar.MaterialSearchBar
             android:id="@+id/searchBar"
-            android:transitionName="search_bar"
             style="@style/MaterialSearchBarLight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:transitionName="search_bar"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView"
             app:mt_hint="@string/main_screen_search_hint"
             app:mt_maxSuggestionsCount="10"
-            app:mt_speechMode="false"
+            app:mt_navIconEnabled="false"
             app:mt_placeholder="Picerija, grill..."
             app:mt_roundedSearchBarEnabled="false"
-            app:mt_navIconEnabled="false"/>
+            app:mt_speechMode="false" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout

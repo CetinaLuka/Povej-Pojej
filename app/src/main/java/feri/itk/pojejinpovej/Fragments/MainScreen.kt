@@ -39,14 +39,20 @@ class MainScreen : Fragment() {
         setupSecondSuggestedRestaurantsList()
 
         searchBar.setOnClickListener {
-            val extras = FragmentNavigatorExtras(
-                searchBar to "search_bar",
-                main_screen_header to "header")
-            view.findNavController().navigate(R.id.action_mainScreen_to_searchFragment,
-                null, // Bundle of args
-                null, // NavOptions
-                extras)
+            openSearchScreen()
         }
+        main_screen_account_button.setOnClickListener {
+            view.findNavController().navigate(R.id.action_mainScreen_to_login)
+        }
+    }
+    fun openSearchScreen(){
+        val extras = FragmentNavigatorExtras(
+            searchBar to "search_bar",
+            main_screen_header to "header")
+        view?.findNavController()?.navigate(R.id.action_mainScreen_to_searchFragment,
+            null, // Bundle of args
+            null, // NavOptions
+            extras)
     }
     fun setupSuggestedRestaurantsList(){
         val restaurants = arrayListOf<String>("Baščaršija", "Ancora", "Piano", "Alf", "Takos", "Papagayo")
