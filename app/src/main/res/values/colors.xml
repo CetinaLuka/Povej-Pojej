@@ -8,4 +8,5 @@
     <color name="lightText">#000000</color>
     <color name="restaurantOpen">#4CAF50</color>
     <color name="restaurantClosed">#f73f52</color>
+    <color name="star">#FBC02D</color>
 </resources>

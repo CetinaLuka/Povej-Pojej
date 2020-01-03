@@ -1,6 +1,5 @@
 package feri.itk.pojejinpovej.Adapters
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,14 +27,6 @@ class SuggestionsRecyclerAdapter(list: List<String>): RecyclerView.Adapter<Sugge
 }
 class SuggestionsViewHolder(val view: View): RecyclerView.ViewHolder(view){
     fun bind(restaurant: String){
-        Picasso.get().load("https://images.pexels.com/photos/1383776/pexels-photo-1383776.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260").fit().centerCrop().into(view.restaurant_picture)
-        view.setOnFocusChangeListener { v, hasFocus ->
-            if (hasFocus){
-                Log.i("focus","Has focus $restaurant")
-            }
-            else {
-
-            }
-        }
+        Picasso.get().load("https://images.pexels.com/photos/1383776/pexels-photo-1383776.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260").fit().centerCrop().into(view.suggestion_restaurant_picture)
     }
 }

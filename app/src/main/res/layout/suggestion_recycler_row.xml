@@ -6,13 +6,13 @@
     android:layout_width="250dp"
     android:layout_height="170dp"
     android:layout_margin="5dp"
+    android:background="?android:attr/selectableItemBackground"
     android:clickable="true"
     android:focusable="true"
     card_view:cardBackgroundColor="@android:color/white"
     card_view:cardCornerRadius="8dp"
-    card_view:cardElevation="2dp"
-    card_view:cardMaxElevation="4dp"
-    android:background="?android:attr/selectableItemBackground">
+    card_view:cardElevation="15dp"
+    card_view:cardMaxElevation="4dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -139,7 +139,7 @@
             card_view:layout_constraintTop_toBottomOf="@+id/imageView3">
 
             <ImageView
-                android:id="@+id/restaurant_picture"
+                android:id="@+id/suggestion_restaurant_picture"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"

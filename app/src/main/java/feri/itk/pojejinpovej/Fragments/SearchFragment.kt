@@ -10,8 +10,11 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.FragmentNavigatorExtras
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.transition.TransitionInflater
 import com.mancj.materialsearchbar.MaterialSearchBar
+import feri.itk.pojejinpovej.Adapters.SearchResultsAdapter
+import feri.itk.pojejinpovej.Adapters.SearchResultsItemDecoration
 
 import feri.itk.pojejinpovej.R
 import kotlinx.android.synthetic.main.fragment_main_screen.*
@@ -41,8 +44,27 @@ class SearchFragment : Fragment(), MaterialSearchBar.OnSearchActionListener {
 
         searchBar.enableSearch()
         searchBar.setOnSearchActionListener(this)
-        searchBar.setCardViewElevation(10)
+
+        restaurant_open_group.addOnButtonCheckedListener { group, checkedId, isChecked ->
+            Toast.makeText(context, checkedId, Toast.LENGTH_SHORT).show()
+        }
+
+        setupSearchResultsList()
+
     }
+
+    private fun setupSearchResultsList() {
+        val restaurants = arrayListOf("Baščaršija", "Ancora", "Piano", "Alf", "Takos", "Papagayo")
+        val searchResultsAdapter =
+            SearchResultsAdapter(restaurants)
+        val searchResultsRecycler = search_results_recycler
+        val layoutManager = LinearLayoutManager(context)
+        searchResultsRecycler.layoutManager = layoutManager
+        searchResultsRecycler.adapter = searchResultsAdapter
+        searchResultsRecycler.addItemDecoration(SearchResultsItemDecoration(
+            resources.getDimension(R.dimen.search_results_row_padding).toInt()))
+    }
+
     fun initCityDropdown(){
         city_drop_down.setItems("Celje", "Maribor", "Ljubljana")
     }
@@ -53,7 +75,7 @@ class SearchFragment : Fragment(), MaterialSearchBar.OnSearchActionListener {
     override fun onButtonClicked(buttonCode: Int) {
         when (buttonCode){
             MaterialSearchBar.BUTTON_BACK -> (
-                    //disabled because of bug
+                //disabled because of bug
                 //searchBarBackButtonClicked()
                 Log.i("search", "back button clicked")
             )
