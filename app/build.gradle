@@ -63,4 +63,7 @@ dependencies {
 
     //navigation
     implementation 'androidx.navigation:navigation-fragment-ktx:2.2.0-rc04'
+
+    //rating bar
+    implementation 'me.zhanghai.android.materialratingbar:library:1.4.0'
 }

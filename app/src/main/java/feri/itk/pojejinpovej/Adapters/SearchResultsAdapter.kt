@@ -1,6 +1,7 @@
 package feri.itk.pojejinpovej.Adapters
 
 import android.graphics.Rect
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +11,7 @@ import feri.itk.pojejinpovej.R
 import kotlinx.android.synthetic.main.search_results_recycler_row.view.*
 import kotlinx.android.synthetic.main.suggestion_recycler_row.view.*
 
-class SearchResultsAdapter(list: List<String>): RecyclerView.Adapter<SearchResultsViewHolder>(){
+class SearchResultsAdapter(list: List<String>, val clickListener: (String) -> Unit): RecyclerView.Adapter<SearchResultsViewHolder>(){
     val restaurantList = list
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchResultsViewHolder {
@@ -20,7 +21,7 @@ class SearchResultsAdapter(list: List<String>): RecyclerView.Adapter<SearchResul
     }
 
     override fun onBindViewHolder(holder: SearchResultsViewHolder, position: Int) {
-        holder.bind(restaurantList[position])
+        holder.bind(restaurantList[position], clickListener)
     }
 
     override fun getItemCount(): Int {
@@ -28,8 +29,9 @@ class SearchResultsAdapter(list: List<String>): RecyclerView.Adapter<SearchResul
     }
 }
 class SearchResultsViewHolder(val view: View): RecyclerView.ViewHolder(view){
-    fun bind(restaurant: String){
+    fun bind(restaurant: String, clickListener: (String) -> Unit){
         Picasso.get().load("https://images.pexels.com/photos/1383776/pexels-photo-1383776.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260").fit().centerCrop().into(view.search_restaurant_picture)
+        view.setOnClickListener { clickListener(restaurant) }
     }
 }
 class SearchResultsItemDecoration(private val spaceHeight: Int) : RecyclerView.ItemDecoration() {

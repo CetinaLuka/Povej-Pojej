@@ -51,18 +51,25 @@ class SearchFragment : Fragment(), MaterialSearchBar.OnSearchActionListener {
 
         setupSearchResultsList()
 
+
+
     }
+
 
     private fun setupSearchResultsList() {
         val restaurants = arrayListOf("Baščaršija", "Ancora", "Piano", "Alf", "Takos", "Papagayo")
         val searchResultsAdapter =
-            SearchResultsAdapter(restaurants)
+            SearchResultsAdapter(restaurants) { restaurant: String -> Log.i("clicked", restaurant)}
         val searchResultsRecycler = search_results_recycler
         val layoutManager = LinearLayoutManager(context)
         searchResultsRecycler.layoutManager = layoutManager
         searchResultsRecycler.adapter = searchResultsAdapter
         searchResultsRecycler.addItemDecoration(SearchResultsItemDecoration(
             resources.getDimension(R.dimen.search_results_row_padding).toInt()))
+    }
+
+    fun searchListItemClicked(restaurant: String){
+        Toast.makeText(context, "Clicked: $restaurant", Toast.LENGTH_LONG).show()
     }
 
     fun initCityDropdown(){
