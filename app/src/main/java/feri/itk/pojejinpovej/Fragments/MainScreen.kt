@@ -59,24 +59,24 @@ class MainScreen : Fragment() {
         val suggestedRestaurantsAdapter =
             SuggestionsRecyclerAdapter(restaurants)
         val suggestionsRecyclerView = main_screen_suggestion_list
-        val layoutManager = LinearLayoutManager(context)
-        layoutManager.orientation = LinearLayoutManager.HORIZONTAL
-        suggestionsRecyclerView.layoutManager = layoutManager
         suggestionsRecyclerView.adapter = suggestedRestaurantsAdapter
-        val snapHelper = PagerSnapHelper()
-        snapHelper.attachToRecyclerView(suggestionsRecyclerView)
+        suggestionsRecyclerView.setItemTransformer(
+            ScaleTransformer
+                .Builder()
+                .setMaxScale(1.05f)
+                .setMinScale(0.99f)
+                .setPivotX(Pivot.X.CENTER) // CENTER is a default one
+                .setPivotY(Pivot.Y.BOTTOM) // CENTER is a default one
+                .build()
+        )
+        suggestionsRecyclerView.setSlideOnFling(true)
     }
     fun setupSecondSuggestedRestaurantsList(){
         val restaurants = arrayListOf<String>("Baščaršija", "Ancora", "Piano", "Alf", "Takos", "Papagayo")
         val suggestedRestaurantsAdapter =
             SuggestionsRecyclerAdapter(restaurants)
         val suggestionsRecyclerView = main_screen_second_suggestion_list
-//        val layoutManager = LinearLayoutManager(context)
-//        layoutManager.orientation = LinearLayoutManager.HORIZONTAL
-//        suggestionsRecyclerView.layoutManager = layoutManager
         suggestionsRecyclerView.adapter = suggestedRestaurantsAdapter
-//        val snapHelper = PagerSnapHelper()
-//        snapHelper.attachToRecyclerView(suggestionsRecyclerView)
         suggestionsRecyclerView.setItemTransformer(
             ScaleTransformer
                 .Builder()
