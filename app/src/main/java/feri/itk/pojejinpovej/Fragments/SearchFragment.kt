@@ -8,11 +8,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.transition.TransitionInflater
 import com.mancj.materialsearchbar.MaterialSearchBar
 
 import feri.itk.pojejinpovej.R
+import kotlinx.android.synthetic.main.fragment_main_screen.*
 import kotlinx.android.synthetic.main.fragment_search.*
+import kotlinx.android.synthetic.main.fragment_search.searchBar
 
 /**
  * A simple [Fragment] subclass.
@@ -43,18 +47,27 @@ class SearchFragment : Fragment(), MaterialSearchBar.OnSearchActionListener {
         city_drop_down.setItems("Celje", "Maribor", "Ljubljana")
     }
     fun initFilterDropdown(){
-        filter_drop_down.setItems("Jelly Bean", "KitKat", "Lollipop", "Marshmallow")
+        filter_drop_down.setItems("Cena", "Oddaljenost", "Ocena")
     }
 
     override fun onButtonClicked(buttonCode: Int) {
-        Toast.makeText(context,"clicked button", Toast.LENGTH_SHORT).show()
-        Log.i("search", "Back clicked")
         when (buttonCode){
             MaterialSearchBar.BUTTON_BACK -> (
-                    Log.i("search", "Back clicked")
-
+                    //disabled because of bug
+                //searchBarBackButtonClicked()
+                Log.i("search", "back button clicked")
             )
         }
+    }
+
+    fun searchBarBackButtonClicked(){
+        val extras = FragmentNavigatorExtras(
+        searchBar to "search_bar",
+            search_header to "header")
+        view?.findNavController()?.navigate(R.id.action_searchFragment_to_mainScreen,
+            null, // Bundle of args
+            null,
+            extras)
     }
 
     override fun onSearchStateChanged(enabled: Boolean) {

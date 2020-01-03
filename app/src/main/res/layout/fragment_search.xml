@@ -9,6 +9,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
+        android:id="@+id/search_header"
         android:layout_height="wrap_content"
         android:transitionName="header"
         android:background="@color/colorPrimary"
