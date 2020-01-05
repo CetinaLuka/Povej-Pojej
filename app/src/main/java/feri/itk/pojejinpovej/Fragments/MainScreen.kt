@@ -29,7 +29,7 @@ class MainScreen : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        sharedElementEnterTransition = TransitionInflater.from(context).inflateTransition(android.R.transition.move)
+        sharedElementEnterTransition = TransitionInflater.from(context).inflateTransition(R.transition.shared_element_transition)
         return inflater.inflate(R.layout.fragment_main_screen, container, false)
     }
 
@@ -42,8 +42,17 @@ class MainScreen : Fragment() {
             openSearchScreen()
         }
         main_screen_account_button.setOnClickListener {
-            view.findNavController().navigate(R.id.action_mainScreen_to_login)
+            openLogin()
         }
+    }
+    fun openLogin(){
+        val extras = FragmentNavigatorExtras(
+            main_screen_title to "main_screen_login_title",
+            main_screen_background to "header")
+        view?.findNavController()?.navigate(R.id.action_mainScreen_to_login,
+            null, // Bundle of args
+            null, // NavOptions
+            extras)
     }
     fun openSearchScreen(){
         val extras = FragmentNavigatorExtras(
