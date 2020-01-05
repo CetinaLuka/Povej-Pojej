@@ -15,11 +15,14 @@ import androidx.transition.TransitionInflater
 import com.mancj.materialsearchbar.MaterialSearchBar
 import feri.itk.pojejinpovej.Adapters.SearchResultsAdapter
 import feri.itk.pojejinpovej.Adapters.SearchResultsItemDecoration
+import feri.itk.pojejinpovej.Dataclass.Restaurant
 
 import feri.itk.pojejinpovej.R
 import kotlinx.android.synthetic.main.fragment_main_screen.*
 import kotlinx.android.synthetic.main.fragment_search.*
 import kotlinx.android.synthetic.main.fragment_search.searchBar
+import kotlinx.android.synthetic.main.search_results_recycler_row.*
+import java.text.FieldPosition
 
 /**
  * A simple [Fragment] subclass.
@@ -54,9 +57,9 @@ class SearchFragment : Fragment(), MaterialSearchBar.OnSearchActionListener {
 
 
     private fun setupSearchResultsList() {
-        val restaurants = arrayListOf("Baščaršija", "Ancora", "Piano", "Alf", "Takos", "Papagayo")
+        val restaurants = arrayListOf(Restaurant("Baščaršija"), Restaurant("Ancora"), Restaurant("Piano"), Restaurant("Alf"), Restaurant("Takos"), Restaurant("Papagayo"))
         val searchResultsAdapter =
-            SearchResultsAdapter(restaurants) { restaurant: String -> Log.i("clicked", restaurant)}
+            SearchResultsAdapter(restaurants) { restaurant: Restaurant, position: Int -> searchListItemClicked(restaurant, position)}
         val searchResultsRecycler = search_results_recycler
         val layoutManager = LinearLayoutManager(context)
         searchResultsRecycler.layoutManager = layoutManager
@@ -65,8 +68,8 @@ class SearchFragment : Fragment(), MaterialSearchBar.OnSearchActionListener {
             resources.getDimension(R.dimen.search_results_row_padding).toInt()))
     }
 
-    fun searchListItemClicked(restaurant: String){
-        Toast.makeText(context, "Clicked: $restaurant", Toast.LENGTH_LONG).show()
+    fun searchListItemClicked(restaurant: Restaurant, position: Int){
+        Toast.makeText(context, search_restaurant_name.transitionName, Toast.LENGTH_SHORT).show()
     }
 
     fun initCityDropdown(){

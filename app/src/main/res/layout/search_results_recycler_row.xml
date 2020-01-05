@@ -6,6 +6,7 @@
     android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/search_results_recycler_row_card_view"
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:clickable="true"
@@ -51,7 +52,7 @@
                     android:paddingRight="8dp">
 
                     <TextView
-                        android:id="@+id/restaurant_name"
+                        android:id="@+id/search_restaurant_name"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
@@ -77,19 +78,19 @@
                         app:srcCompat="@drawable/open_circle" />
 
                     <TextView
-                        android:id="@+id/textView8"
+                        android:id="@+id/search_restaurant_address"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="4dp"
                         android:text="Ulica Bratov Švajger, 15"
                         android:textColor="@color/lightText"
                         android:textSize="12sp"
-                        app:layout_constraintEnd_toStartOf="@+id/textView9"
-                        app:layout_constraintStart_toStartOf="@+id/restaurant_name"
-                        app:layout_constraintTop_toBottomOf="@+id/restaurant_name" />
+                        app:layout_constraintEnd_toStartOf="@+id/search_restaurant_distance"
+                        app:layout_constraintStart_toStartOf="@+id/search_restaurant_name"
+                        app:layout_constraintTop_toBottomOf="@+id/search_restaurant_name" />
 
                     <TextView
-                        android:id="@+id/textView9"
+                        android:id="@+id/search_restaurant_distance"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:maxLength="5"
@@ -97,75 +98,75 @@
                         android:textAlignment="center"
                         android:textColor="@color/lightText"
                         android:textSize="12sp"
-                        app:layout_constraintBottom_toBottomOf="@+id/textView8"
+                        app:layout_constraintBottom_toBottomOf="@+id/search_restaurant_address"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/textView8" />
+                        app:layout_constraintTop_toTopOf="@+id/search_restaurant_address" />
 
                     <ImageView
-                        android:id="@+id/imageView8"
+                        android:id="@+id/search_restaurant_time_icon"
                         android:layout_width="wrap_content"
                         android:layout_height="0dp"
                         android:scaleType="fitStart"
-                        app:layout_constraintBottom_toBottomOf="@+id/textView10"
+                        app:layout_constraintBottom_toBottomOf="@+id/search_restaurant_working_hours"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/textView10"
+                        app:layout_constraintTop_toTopOf="@+id/search_restaurant_working_hours"
                         app:srcCompat="@drawable/ic_access_time_black_24dp" />
 
                     <TextView
-                        android:id="@+id/textView10"
+                        android:id="@+id/search_restaurant_working_hours"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:text="10:00 - 21:00"
                         android:textColor="@color/primaryText"
                         android:textSize="12sp"
-                        app:layout_constraintStart_toEndOf="@+id/imageView8"
-                        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+                        app:layout_constraintStart_toEndOf="@+id/search_restaurant_time_icon"
+                        app:layout_constraintTop_toBottomOf="@+id/search_restaurant_address" />
 
                     <TextView
-                        android:id="@+id/textView11"
+                        android:id="@+id/search_restaurant_price"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="2,80"
                         android:textColor="@color/primaryText"
                         android:textStyle="bold"
-                        app:layout_constraintBottom_toBottomOf="@+id/textView16"
-                        app:layout_constraintEnd_toStartOf="@+id/textView12" />
+                        app:layout_constraintBottom_toBottomOf="@+id/search_restaurant_num_of_reviews"
+                        app:layout_constraintEnd_toStartOf="@+id/search_restaurant_currency" />
 
                     <TextView
-                        android:id="@+id/textView12"
+                        android:id="@+id/search_restaurant_currency"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/currency"
                         android:textColor="@color/primaryText"
                         android:textStyle="bold"
-                        app:layout_constraintBottom_toBottomOf="@+id/textView11"
+                        app:layout_constraintBottom_toBottomOf="@+id/search_restaurant_price"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/textView11" />
+                        app:layout_constraintTop_toTopOf="@+id/search_restaurant_price" />
 
                     <ImageView
-                        android:id="@+id/imageView9"
+                        android:id="@+id/search_restaurant_star_icon"
                         android:layout_width="wrap_content"
                         android:layout_height="0dp"
                         android:scaleType="fitStart"
                         android:tint="@color/star"
-                        app:layout_constraintBottom_toBottomOf="@+id/textView14"
+                        app:layout_constraintBottom_toBottomOf="@+id/search_restaurant_rating"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/textView14"
+                        app:layout_constraintTop_toTopOf="@+id/search_restaurant_rating"
                         app:srcCompat="@drawable/ic_star_black_24dp" />
 
                     <TextView
-                        android:id="@+id/textView14"
+                        android:id="@+id/search_restaurant_rating"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:text="4,8"
                         android:textSize="12sp"
-                        app:layout_constraintStart_toEndOf="@+id/imageView9"
-                        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+                        app:layout_constraintStart_toEndOf="@+id/search_restaurant_star_icon"
+                        app:layout_constraintTop_toBottomOf="@+id/search_restaurant_working_hours" />
 
                     <TextView
-                        android:id="@+id/textView15"
+                        android:id="@+id/search_restaurant_description"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:ellipsize="end"
@@ -177,18 +178,18 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView14" />
+                        app:layout_constraintTop_toBottomOf="@+id/search_restaurant_rating" />
 
                     <TextView
-                        android:id="@+id/textView16"
+                        android:id="@+id/search_restaurant_num_of_reviews"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="4dp"
                         android:text="(200)"
                         android:textSize="12sp"
-                        app:layout_constraintBottom_toBottomOf="@+id/textView14"
-                        app:layout_constraintStart_toEndOf="@+id/textView14"
-                        app:layout_constraintTop_toTopOf="@+id/textView14" />
+                        app:layout_constraintBottom_toBottomOf="@+id/search_restaurant_rating"
+                        app:layout_constraintStart_toEndOf="@+id/search_restaurant_rating"
+                        app:layout_constraintTop_toTopOf="@+id/search_restaurant_rating" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>

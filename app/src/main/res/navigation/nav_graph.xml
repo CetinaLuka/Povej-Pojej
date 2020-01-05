@@ -30,5 +30,13 @@
         <action
             android:id="@+id/action_searchFragment_to_mainScreen"
             app:destination="@id/mainScreen" />
+        <action
+            android:id="@+id/action_searchFragment_to_restaurantDetails"
+            app:destination="@id/restaurantDetails" />
     </fragment>
+    <fragment
+        android:id="@+id/restaurantDetails"
+        android:name="feri.itk.pojejinpovej.Fragments.RestaurantDetails"
+        android:label="fragment_restaurant_details"
+        tools:layout="@layout/fragment_restaurant_details" />
 </navigation>
