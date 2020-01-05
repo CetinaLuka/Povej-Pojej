@@ -48,7 +48,7 @@ class MainScreen : Fragment() {
     fun openSearchScreen(){
         val extras = FragmentNavigatorExtras(
             searchBar to "search_bar",
-            main_screen_header to "header")
+            main_screen_background to "header")
         view?.findNavController()?.navigate(R.id.action_mainScreen_to_searchFragment,
             null, // Bundle of args
             null, // NavOptions

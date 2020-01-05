@@ -48,10 +48,7 @@ class SearchFragment : Fragment(), MaterialSearchBar.OnSearchActionListener {
         restaurant_open_group.addOnButtonCheckedListener { group, checkedId, isChecked ->
             Toast.makeText(context, checkedId, Toast.LENGTH_SHORT).show()
         }
-
         setupSearchResultsList()
-
-
 
     }
 
@@ -91,7 +88,7 @@ class SearchFragment : Fragment(), MaterialSearchBar.OnSearchActionListener {
 
     fun searchBarBackButtonClicked(){
         val extras = FragmentNavigatorExtras(
-        searchBar to "search_bar",
+            searchBar to "search_bar",
             search_header to "header")
         view?.findNavController()?.navigate(R.id.action_searchFragment_to_mainScreen,
             null, // Bundle of args
@@ -100,11 +97,13 @@ class SearchFragment : Fragment(), MaterialSearchBar.OnSearchActionListener {
     }
 
     override fun onSearchStateChanged(enabled: Boolean) {
-        Log.i("search", "state changed")
 
+        if(!enabled){
+            searchBarBackButtonClicked()
+        }
     }
 
     override fun onSearchConfirmed(text: CharSequence?) {
-        Log.i("search", "search confirmed")
+
     }
 }
