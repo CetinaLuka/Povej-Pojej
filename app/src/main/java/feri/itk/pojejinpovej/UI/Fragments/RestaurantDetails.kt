@@ -55,6 +55,7 @@ class RestaurantDetails : Fragment() {
         details_restaurant_address.text = restaurant.address
         details_restaurant_description.text = restaurant.description
         details_restaurant_price.text = restaurant.price.toString()
+        setupReviewsList(restaurant.reviews)
     }
 
     private fun loadRestaurantPicture(picture: String) {
@@ -86,6 +87,25 @@ class RestaurantDetails : Fragment() {
 
                 })
         }
+    }
+    private fun setupReviewsList(reviews: ArrayList<Review>) {
+        val reviewsAdapter =
+            RestaurantReviewsAdapter(reviews,{review: Review -> reviewLikeButtonClicked(review)}, {review: Review -> reviewDislikeButtonClicked(review)})
+        val restauranReviewsRecycler = restaurant_reviews_recycler_view
+        val layoutManager = LinearLayoutManager(context)
+        restauranReviewsRecycler.layoutManager = layoutManager
+        restauranReviewsRecycler.adapter = reviewsAdapter
+        restauranReviewsRecycler.addItemDecoration(
+            RecyclerViewItemDecoration(
+                resources.getDimension(R.dimen.reviews_row_padding).toInt()
+            )
+        )
+    }
+    private fun reviewLikeButtonClicked(review: Review){
+        restaurantViewModel.reviewDisliked(review)
+    }
+    private fun reviewDislikeButtonClicked(review: Review){
+        restaurantViewModel.reviewDisliked(review)
     }
 
 }
