@@ -18,7 +18,7 @@ import feri.itk.pojejinpovej.Data.Models.Review
 import feri.itk.pojejinpovej.Data.ViewModels.RestaurantDetailsViewModel
 import feri.itk.pojejinpovej.R
 import feri.itk.pojejinpovej.UI.Adapters.RestaurantReviewsAdapter
-import feri.itk.pojejinpovej.UI.Util.RecyclerViewItemDecoration
+import feri.itk.pojejinpovej.Util.RecyclerViewItemDecoration
 import kotlinx.android.synthetic.main.fragment_restaurant_details.*
 import java.lang.Exception
 

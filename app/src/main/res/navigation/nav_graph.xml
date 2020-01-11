@@ -36,6 +36,10 @@
         <action
             android:id="@+id/action_searchFragment_to_mainScreen"
             app:destination="@id/mainScreen" />
+        <argument
+            android:name="fromMainScreen"
+            app:argType="boolean"
+            android:defaultValue="false" />
     </fragment>
     <fragment
         android:id="@+id/restaurantDetails"

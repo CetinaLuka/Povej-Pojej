@@ -1,4 +1,4 @@
-package feri.itk.pojejinpovej.UI.Util
+package feri.itk.pojejinpovej.Util
 
 import android.graphics.Rect
 import android.view.View

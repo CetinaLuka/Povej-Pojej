@@ -21,7 +21,7 @@ import feri.itk.pojejinpovej.Data.ViewModels.RestaurantDetailsViewModel
 import feri.itk.pojejinpovej.Data.ViewModels.SearchRestaurantsViewModel
 
 import feri.itk.pojejinpovej.R
-import feri.itk.pojejinpovej.UI.Util.RecyclerViewItemDecoration
+import feri.itk.pojejinpovej.Util.RecyclerViewItemDecoration
 import kotlinx.android.synthetic.main.fragment_search.*
 import kotlinx.android.synthetic.main.fragment_search.searchBar
 
@@ -51,7 +51,10 @@ class SearchFragment : Fragment(), MaterialSearchBar.OnSearchActionListener {
         initCityDropdown()
         initFilterDropdown()
 
-        searchBar.enableSearch()
+        if(arguments!!.getBoolean("fromMainScreen")){
+            searchBar.enableSearch()
+        }
+        Toast.makeText(context, arguments!!.getBoolean("fromMainScreen").toString(), Toast.LENGTH_SHORT).show()
         searchBar.setOnSearchActionListener(this)
 
         restaurant_open_group.addOnButtonCheckedListener { group, checkedId, isChecked ->
@@ -115,4 +118,5 @@ class SearchFragment : Fragment(), MaterialSearchBar.OnSearchActionListener {
     override fun onSearchConfirmed(text: CharSequence?) {
 
     }
+
 }

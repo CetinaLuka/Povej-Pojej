@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
@@ -76,8 +77,9 @@ class MainScreen : Fragment() {
         val extras = FragmentNavigatorExtras(
             searchBar to "search_bar",
             main_screen_background to "header")
+        val bundle = bundleOf("fromMainScreen" to true)
         view?.findNavController()?.navigate(R.id.action_mainScreen_to_searchFragment,
-            null, // Bundle of args
+            bundle, // Bundle of args
             null, // NavOptions
             extras)
     }
