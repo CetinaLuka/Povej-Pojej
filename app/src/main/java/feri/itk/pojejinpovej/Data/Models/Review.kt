@@ -3,6 +3,7 @@ package feri.itk.pojejinpovej.Data.Models
 import java.util.*
 
 data class Review(
+    val id: String = "0",
     val reviewer: String = "",
     var text: String = "",
     val date: Date = Date(),

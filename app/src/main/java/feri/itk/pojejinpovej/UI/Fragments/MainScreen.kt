@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.FragmentNavigatorExtras
@@ -43,8 +44,10 @@ class MainScreen : Fragment() {
         restaurantDetailsViewModel = ViewModelProviders.of(activity!!)[RestaurantDetailsViewModel::class.java]
         suggestedRestaurantsViewModel = ViewModelProviders.of(activity!!)[SuggestedRestaurantsViewModel::class.java]
 
-        setupSuggestedRestaurantsList(suggestedRestaurantsViewModel.getRestaurants())
-        setupSecondSuggestedRestaurantsList(suggestedRestaurantsViewModel.getRestaurants())
+        suggestedRestaurantsViewModel.getRestaurants().observe(this, Observer { restaurants ->
+            setupSuggestedRestaurantsList(restaurants)
+            setupSecondSuggestedRestaurantsList(restaurants)
+        })
 
         //clicking search bar starts transition to search fragment
         searchBar.setOnClickListener {
@@ -82,7 +85,7 @@ class MainScreen : Fragment() {
         restaurantDetailsViewModel.setRestaurant(restaurant)
 
     }
-    private fun setupSuggestedRestaurantsList(restaurants: ArrayList<Restaurant>){
+    private fun setupSuggestedRestaurantsList(restaurants: List<Restaurant>){
         val suggestedRestaurantsAdapter =
             SuggestionsRecyclerAdapter(restaurants){restaurant: Restaurant -> restaurantClicked(restaurant) }
         val suggestionsRecyclerView = main_screen_suggestion_list
@@ -90,7 +93,7 @@ class MainScreen : Fragment() {
         setDiscreteViewItemTransformation(suggestionsRecyclerView)
         suggestionsRecyclerView.setSlideOnFling(true)
     }
-    private fun setupSecondSuggestedRestaurantsList(restaurants: ArrayList<Restaurant>){
+    private fun setupSecondSuggestedRestaurantsList(restaurants: List<Restaurant>){
         val suggestedRestaurantsAdapter =
             SuggestionsRecyclerAdapter(restaurants){restaurant: Restaurant -> restaurantClicked(restaurant) }
         val suggestionsRecyclerView = main_screen_second_suggestion_list

@@ -11,7 +11,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import feri.itk.pojejinpovej.Data.Models.Restaurant
 import feri.itk.pojejinpovej.R
+import feri.itk.pojejinpovej.Util.PicassoImageLoader
 import kotlinx.android.synthetic.main.search_results_recycler_row.view.*
+import kotlinx.android.synthetic.main.suggestion_recycler_row.view.*
 
 class SearchResultsAdapter(list: List<Restaurant>, val clickListener: (Restaurant) -> Unit): RecyclerView.Adapter<SearchResultsViewHolder>(){
     val restaurantList = list
@@ -47,7 +49,10 @@ class SearchResultsAdapter(list: List<Restaurant>, val clickListener: (Restauran
 class SearchResultsViewHolder(val view: View): RecyclerView.ViewHolder(view){
     fun bind(restaurant: Restaurant, clickListener: (Restaurant) -> Unit){
         view.search_restaurant_name.text = restaurant.name
-        Picasso.get().load("https://images.pexels.com/photos/1383776/pexels-photo-1383776.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260").fit().centerCrop().into(view.search_restaurant_picture)
+        view.search_restaurant_price.text = restaurant.price.toString()
+        view.search_restaurant_address.text = restaurant.address
+        view.search_restaurant_description.text = restaurant.description
+        PicassoImageLoader.loadImage(restaurant.picture, view.search_restaurant_picture)
         view.search_results_recycler_row_card_view.setOnClickListener {
             clickListener(restaurant)
             val extras = FragmentNavigatorExtras(

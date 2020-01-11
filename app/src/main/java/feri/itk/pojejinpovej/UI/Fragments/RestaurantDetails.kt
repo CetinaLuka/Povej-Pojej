@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.transition.TransitionInflater
@@ -45,7 +46,9 @@ class RestaurantDetails : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         //initiating lateinit var restaurantViewModel which contains data for the restaurant
         restaurantViewModel = ViewModelProviders.of(activity!!)[RestaurantDetailsViewModel::class.java]
-        loadRestaurantData(restaurantViewModel.getRestaurant())
+        restaurantViewModel.getRestaurant().observe(this, Observer { restaurant ->
+            loadRestaurantData(restaurant)
+        })
 
     }
 
@@ -102,7 +105,7 @@ class RestaurantDetails : Fragment() {
         )
     }
     private fun reviewLikeButtonClicked(review: Review){
-        restaurantViewModel.reviewDisliked(review)
+        restaurantViewModel.reviewLiked(review)
     }
     private fun reviewDislikeButtonClicked(review: Review){
         restaurantViewModel.reviewDisliked(review)

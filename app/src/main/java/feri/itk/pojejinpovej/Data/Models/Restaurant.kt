@@ -11,4 +11,11 @@ data class Restaurant (
     val description: String = "",
     val reviews: ArrayList<Review> = ArrayList()
 ){
+    fun findReview(review: Review): Review{
+        for(r in reviews){
+            if(r.id == review.id)
+                return r
+        }
+        return Review("x")
+    }
 }
