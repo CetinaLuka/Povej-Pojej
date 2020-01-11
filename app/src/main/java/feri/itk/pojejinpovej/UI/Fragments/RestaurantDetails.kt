@@ -46,23 +46,26 @@ class RestaurantDetails : Fragment() {
         //initiating lateinit var restaurantViewModel which contains data for the restaurant
         restaurantViewModel = ViewModelProviders.of(activity!!)[RestaurantDetailsViewModel::class.java]
         loadRestaurantData(restaurantViewModel.getRestaurant())
-        loadRestaurantPicture("https://images.pexels.com/photos/1383776/pexels-photo-1383776.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260")
 
     }
 
     private fun loadRestaurantData(restaurant: Restaurant){
         loadRestaurantPicture(restaurant.picture)
-        Toast.makeText(context, restaurant.name, Toast.LENGTH_SHORT).show()
+        details_restaurant_name.text = restaurant.name
+        details_restaurant_address.text = restaurant.address
+        details_restaurant_description.text = restaurant.description
+        details_restaurant_price.text = restaurant.price.toString()
     }
 
     private fun loadRestaurantPicture(picture: String) {
         if(picture.isEmpty()){
             Picasso
                 .get()
-                .load(R.drawable.ic_restaurant_black_24dp)
+                .load(R.drawable.app_logo_transparent)
                 .fit()
                 .centerCrop()
                 .into(details_restaurant_picture)
+            startPostponedEnterTransition()
         }
         else{
             Picasso

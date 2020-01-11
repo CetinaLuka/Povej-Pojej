@@ -79,9 +79,8 @@ class MainScreen : Fragment() {
             extras)
     }
     private fun restaurantClicked(restaurant: Restaurant){
-        Log.i("viewmodel", "before: ${restaurantDetailsViewModel.getRestaurant().name}")
         restaurantDetailsViewModel.setRestaurant(restaurant)
-        Log.i("viewmodel", "after: ${restaurantDetailsViewModel.getRestaurant().name}")
+
     }
     private fun setupSuggestedRestaurantsList(restaurants: ArrayList<Restaurant>){
         val suggestedRestaurantsAdapter =

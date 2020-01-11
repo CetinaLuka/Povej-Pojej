@@ -4,10 +4,13 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import feri.itk.pojejinpovej.Data.Models.Restaurant
 import feri.itk.pojejinpovej.R
+import kotlinx.android.synthetic.main.fragment_main_screen.*
 import kotlinx.android.synthetic.main.suggestion_recycler_row.view.*
 
 class SuggestionsRecyclerAdapter(list: List<Restaurant>, val clickListener: (Restaurant) -> Unit): RecyclerView.Adapter<SuggestionsViewHolder>(){
@@ -36,6 +39,16 @@ class SuggestionsViewHolder(val view: View): RecyclerView.ViewHolder(view){
 
         view.suggestions_card_view.setOnClickListener {
             clickListener(restaurant)
+            if (view?.findNavController().currentDestination?.id == R.id.mainScreen) {
+//                val extras = FragmentNavigatorExtras(
+//                    searchBar to "search_bar",
+//                    main_screen_background to "header")
+                view?.findNavController()?.navigate(R.id.action_mainScreen_to_restaurantDetails,
+                    null, // Bundle of args
+                    null, // NavOptions
+                    null)
+
+            }
         }
         if(restaurant.picture.isEmpty()){
             Picasso
