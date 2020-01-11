@@ -1,8 +1,9 @@
 package feri.itk.pojejinpovej.Data.ViewModels
 
+import androidx.lifecycle.ViewModel
 import feri.itk.pojejinpovej.Data.Models.Restaurant
 
-class SuggestedRestaurantsViewModel {
+class SuggestedRestaurantsViewModel: ViewModel() {
     private lateinit var restaurants: ArrayList<Restaurant>
 
     fun getRestaurants(): ArrayList<Restaurant> {

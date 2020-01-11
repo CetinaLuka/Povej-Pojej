@@ -40,7 +40,7 @@ class SuggestionsViewHolder(val view: View): RecyclerView.ViewHolder(view){
         if(restaurant.picture.isEmpty()){
             Picasso
                 .get()
-                .load(R.drawable.ic_restaurant_black_24dp)
+                .load(R.drawable.app_logo_transparent)
                 .fit()
                 .centerCrop()
                 .into(view.suggestion_restaurant_picture)

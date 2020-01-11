@@ -18,6 +18,7 @@ import feri.itk.pojejinpovej.R
 import feri.itk.pojejinpovej.UI.Adapters.SuggestionsRecyclerAdapter
 import feri.itk.pojejinpovej.Data.Models.Restaurant
 import feri.itk.pojejinpovej.Data.ViewModels.RestaurantDetailsViewModel
+import feri.itk.pojejinpovej.Data.ViewModels.SuggestedRestaurantsViewModel
 import kotlinx.android.synthetic.main.fragment_main_screen.*
 
 /**
@@ -26,6 +27,7 @@ import kotlinx.android.synthetic.main.fragment_main_screen.*
 class MainScreen : Fragment() {
 
     lateinit var restaurantDetailsViewModel: RestaurantDetailsViewModel
+    lateinit var suggestedRestaurantsViewModel: SuggestedRestaurantsViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,9 +41,10 @@ class MainScreen : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         restaurantDetailsViewModel = ViewModelProviders.of(activity!!)[RestaurantDetailsViewModel::class.java]
+        suggestedRestaurantsViewModel = ViewModelProviders.of(activity!!)[SuggestedRestaurantsViewModel::class.java]
 
-        setupSuggestedRestaurantsList()
-        setupSecondSuggestedRestaurantsList()
+        setupSuggestedRestaurantsList(suggestedRestaurantsViewModel.getRestaurants())
+        setupSecondSuggestedRestaurantsList(suggestedRestaurantsViewModel.getRestaurants())
 
         //clicking search bar starts transition to search fragment
         searchBar.setOnClickListener {
@@ -80,8 +83,7 @@ class MainScreen : Fragment() {
         restaurantDetailsViewModel.setRestaurant(restaurant)
         Log.i("viewmodel", "after: ${restaurantDetailsViewModel.getRestaurant().name}")
     }
-    private fun setupSuggestedRestaurantsList(){
-        val restaurants = arrayListOf(Restaurant("Baščaršija"), Restaurant("Ancora"), Restaurant("Piano"), Restaurant("Alf"), Restaurant("Takos"), Restaurant("Papagayo"))
+    private fun setupSuggestedRestaurantsList(restaurants: ArrayList<Restaurant>){
         val suggestedRestaurantsAdapter =
             SuggestionsRecyclerAdapter(restaurants){restaurant: Restaurant -> restaurantClicked(restaurant) }
         val suggestionsRecyclerView = main_screen_suggestion_list
@@ -89,8 +91,7 @@ class MainScreen : Fragment() {
         setDiscreteViewItemTransformation(suggestionsRecyclerView)
         suggestionsRecyclerView.setSlideOnFling(true)
     }
-    private fun setupSecondSuggestedRestaurantsList(){
-        val restaurants = arrayListOf(Restaurant("Baščaršija"), Restaurant("Ancora"), Restaurant("Piano"), Restaurant("Alf"), Restaurant("Takos"), Restaurant("Papagayo"))
+    private fun setupSecondSuggestedRestaurantsList(restaurants: ArrayList<Restaurant>){
         val suggestedRestaurantsAdapter =
             SuggestionsRecyclerAdapter(restaurants){restaurant: Restaurant -> restaurantClicked(restaurant) }
         val suggestionsRecyclerView = main_screen_second_suggestion_list
