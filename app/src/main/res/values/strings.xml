@@ -12,7 +12,14 @@
     <string name="main_screen_suggested_2_text">Priporočene restavracije v bližini</string>
     <string name="main_screen_search_hint">Vpišite ime restavracije</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- Restaurant details -->
+    <string name="rating_food">Hrana</string>
+    <string name="rating_offer">Ponudba</string>
+    <string name="rating_service">Postrežba</string>
     <string name="currency">€</string>
+    <string name="error_loading_restaurant_picture">Prišlo je do napake pri nalaganju slike</string>
+
+
+    <!-- general error messages -->
+    <string name="not_available_error">Ni na voljo</string>
 </resources>

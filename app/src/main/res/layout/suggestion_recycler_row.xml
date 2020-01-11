@@ -2,7 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/card_view"
+    android:id="@+id/suggestions_card_view"
     android:layout_width="250dp"
     android:layout_height="170dp"
     android:layout_margin="5dp"
@@ -34,7 +34,7 @@
                 android:layout_weight="0.15">
 
                 <TextView
-                    android:id="@+id/restaurant"
+                    android:id="@+id/suggestion_restaurant_name"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
@@ -55,18 +55,17 @@
                 android:layout_weight="1">
 
                 <ImageView
-                    android:id="@+id/open_status"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginEnd="8dp"
+                    android:id="@+id/suggestion_restaurant_open_status"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_marginTop="8dp"
                     android:tint="@color/restaurantOpen"
                     card_view:layout_constraintBottom_toBottomOf="parent"
                     card_view:layout_constraintEnd_toEndOf="parent"
                     card_view:layout_constraintStart_toStartOf="parent"
                     card_view:layout_constraintTop_toTopOf="parent"
                     card_view:layout_constraintVertical_bias="1.0"
-                    card_view:srcCompat="@drawable/ic_access_time_black_24dp" />
+                    card_view:srcCompat="@drawable/open_circle" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>
@@ -78,11 +77,11 @@
             android:layout_marginStart="8dp"
             android:tint="#FFC107"
             card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toBottomOf="@+id/address"
+            card_view:layout_constraintTop_toBottomOf="@+id/suggestion_restaurant_address"
             card_view:srcCompat="@drawable/ic_star_black_24dp" />
 
         <TextView
-            android:id="@+id/num_of_reviews"
+            android:id="@+id/rating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -92,36 +91,36 @@
             card_view:layout_constraintTop_toTopOf="@+id/imageView3" />
 
         <TextView
-            android:id="@+id/textView13"
+            android:id="@+id/num_of_reviews"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:text="(120)"
-            card_view:layout_constraintBottom_toBottomOf="@+id/num_of_reviews"
-            card_view:layout_constraintStart_toEndOf="@+id/num_of_reviews"
-            card_view:layout_constraintTop_toTopOf="@+id/num_of_reviews" />
+            card_view:layout_constraintBottom_toBottomOf="@+id/rating"
+            card_view:layout_constraintStart_toEndOf="@+id/rating"
+            card_view:layout_constraintTop_toTopOf="@+id/rating" />
 
         <TextView
-            android:id="@+id/address"
+            android:id="@+id/suggestion_restaurant_address"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="2dp"
             android:layout_marginEnd="8dp"
             android:text="Kolodvorska 15, Maribor"
-            card_view:layout_constraintEnd_toStartOf="@+id/price"
+            card_view:layout_constraintEnd_toStartOf="@+id/suggestion_restaurant_price"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
         <TextView
-            android:id="@+id/price"
+            android:id="@+id/suggestion_restaurant_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="2,80"
             android:textColor="@color/primaryText"
             android:textSize="14sp"
-            card_view:layout_constraintBottom_toBottomOf="@+id/address"
-            card_view:layout_constraintEnd_toStartOf="@+id/valuta"
+            card_view:layout_constraintBottom_toBottomOf="@+id/suggestion_restaurant_address"
+            card_view:layout_constraintEnd_toStartOf="@+id/suggestion_restaurant_currency"
             card_view:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
         <LinearLayout
@@ -147,7 +146,7 @@
                 card_view:srcCompat="@drawable/ic_account_circle_black_24dp" />
 
             <TextView
-                android:id="@+id/restaurant_description"
+                android:id="@+id/suggestion_restaurant_description"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="0.70"
@@ -160,15 +159,15 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/valuta"
+            android:id="@+id/suggestion_restaurant_currency"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:text="€"
             android:textColor="@color/primaryText"
-            card_view:layout_constraintBottom_toBottomOf="@+id/price"
+            card_view:layout_constraintBottom_toBottomOf="@+id/suggestion_restaurant_price"
             card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintTop_toTopOf="@+id/price" />
+            card_view:layout_constraintTop_toTopOf="@+id/suggestion_restaurant_price" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

@@ -1,13 +1,13 @@
-package feri.itk.pojejinpovej.Activities
+package feri.itk.pojejinpovej.UI.Activities
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import feri.itk.pojejinpovej.R
 
-class SplashScreen : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        startActivity( Intent(this, MainActivity::class.java))
+        setContentView(R.layout.activity_main)
     }
 }

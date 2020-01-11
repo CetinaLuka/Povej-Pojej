@@ -1,4 +1,4 @@
-package feri.itk.pojejinpovej.Fragments
+package feri.itk.pojejinpovej.UI.Fragments
 
 
 import android.os.Bundle
@@ -8,27 +8,29 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.transition.TransitionInflater
 import com.mancj.materialsearchbar.MaterialSearchBar
-import feri.itk.pojejinpovej.Adapters.SearchResultsAdapter
-import feri.itk.pojejinpovej.Adapters.SearchResultsItemDecoration
-import feri.itk.pojejinpovej.Dataclass.Restaurant
+import feri.itk.pojejinpovej.UI.Adapters.SearchResultsAdapter
+import feri.itk.pojejinpovej.Data.Models.Restaurant
+import feri.itk.pojejinpovej.Data.ViewModels.RestaurantDetailsViewModel
+import feri.itk.pojejinpovej.Data.ViewModels.SearchRestaurantsViewModel
 
 import feri.itk.pojejinpovej.R
-import kotlinx.android.synthetic.main.fragment_main_screen.*
+import feri.itk.pojejinpovej.UI.Util.RecyclerViewItemDecoration
 import kotlinx.android.synthetic.main.fragment_search.*
 import kotlinx.android.synthetic.main.fragment_search.searchBar
-import kotlinx.android.synthetic.main.search_results_recycler_row.*
-import java.text.FieldPosition
 
 /**
  * A simple [Fragment] subclass.
  */
 class SearchFragment : Fragment(), MaterialSearchBar.OnSearchActionListener {
 
+    lateinit var searchRestaurantsViewModel: SearchRestaurantsViewModel
+    lateinit var restaurantDetailsViewModel: RestaurantDetailsViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,6 +43,11 @@ class SearchFragment : Fragment(), MaterialSearchBar.OnSearchActionListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        searchRestaurantsViewModel = ViewModelProviders.of(this)[SearchRestaurantsViewModel::class.java]
+        restaurantDetailsViewModel = ViewModelProviders.of(activity!!)[RestaurantDetailsViewModel::class.java]
+
+        Log.i("viewmodel", "start: ${restaurantDetailsViewModel.getRestaurant().name}")
 
         initCityDropdown()
         initFilterDropdown()
@@ -57,39 +64,32 @@ class SearchFragment : Fragment(), MaterialSearchBar.OnSearchActionListener {
 
 
     private fun setupSearchResultsList() {
-        val restaurants = arrayListOf(Restaurant("Baščaršija"), Restaurant("Ancora"), Restaurant("Piano"), Restaurant("Alf"), Restaurant("Takos"), Restaurant("Papagayo"))
-        val searchResultsAdapter =
-            SearchResultsAdapter(restaurants) { restaurant: Restaurant, position: Int -> searchListItemClicked(restaurant, position)}
+        val searchResultsAdapter = SearchResultsAdapter(searchRestaurantsViewModel.getRestaurants()){restaurant: Restaurant -> searchItemClicked(restaurant) }
         val searchResultsRecycler = search_results_recycler
         val layoutManager = LinearLayoutManager(context)
         searchResultsRecycler.layoutManager = layoutManager
         searchResultsRecycler.adapter = searchResultsAdapter
-        searchResultsRecycler.addItemDecoration(SearchResultsItemDecoration(
-            resources.getDimension(R.dimen.search_results_row_padding).toInt()))
+        searchResultsRecycler.addItemDecoration(
+            RecyclerViewItemDecoration(
+                resources.getDimension(R.dimen.search_results_row_padding).toInt()
+            )
+        )
     }
 
-    fun searchListItemClicked(restaurant: Restaurant, position: Int){
-        Toast.makeText(context, search_restaurant_name.transitionName, Toast.LENGTH_SHORT).show()
+    private fun searchItemClicked(restaurant: Restaurant){
+        restaurantDetailsViewModel.setRestaurant(restaurant)
+        Log.i("viewmodel", "restaurant set")
+        Log.i("nav", view?.findNavController()?.currentDestination?.label.toString())
     }
 
-    fun initCityDropdown(){
+    private fun initCityDropdown(){
         city_drop_down.setItems("Celje", "Maribor", "Ljubljana")
     }
-    fun initFilterDropdown(){
+    private fun initFilterDropdown(){
         filter_drop_down.setItems("Cena", "Oddaljenost", "Ocena")
     }
 
-    override fun onButtonClicked(buttonCode: Int) {
-        when (buttonCode){
-            MaterialSearchBar.BUTTON_BACK -> (
-                //disabled because of bug
-                //searchBarBackButtonClicked()
-                Log.i("search", "back button clicked")
-            )
-        }
-    }
-
-    fun searchBarBackButtonClicked(){
+    private fun searchBarBackButtonClicked(){
         val extras = FragmentNavigatorExtras(
             searchBar to "search_bar",
             search_header to "header")
@@ -97,6 +97,10 @@ class SearchFragment : Fragment(), MaterialSearchBar.OnSearchActionListener {
             null, // Bundle of args
             null,
             extras)
+    }
+
+    override fun onButtonClicked(buttonCode: Int) {
+
     }
 
     override fun onSearchStateChanged(enabled: Boolean) {

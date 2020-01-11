@@ -1,4 +1,4 @@
-package feri.itk.pojejinpovej.Adapters
+package feri.itk.pojejinpovej.UI.Adapters
 
 import android.graphics.Rect
 import android.util.Log
@@ -9,13 +9,11 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
-import feri.itk.pojejinpovej.Dataclass.Restaurant
+import feri.itk.pojejinpovej.Data.Models.Restaurant
 import feri.itk.pojejinpovej.R
-import kotlinx.android.synthetic.main.search_results_recycler_row.*
 import kotlinx.android.synthetic.main.search_results_recycler_row.view.*
-import kotlinx.android.synthetic.main.suggestion_recycler_row.view.*
 
-class SearchResultsAdapter(list: List<Restaurant>, val clickListener: (Restaurant, Int) -> Unit): RecyclerView.Adapter<SearchResultsViewHolder>(){
+class SearchResultsAdapter(list: List<Restaurant>, val clickListener: (Restaurant) -> Unit): RecyclerView.Adapter<SearchResultsViewHolder>(){
     val restaurantList = list
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchResultsViewHolder {
@@ -25,7 +23,7 @@ class SearchResultsAdapter(list: List<Restaurant>, val clickListener: (Restauran
     }
 
     override fun onBindViewHolder(holder: SearchResultsViewHolder, position: Int) {
-        holder.bind(restaurantList[position], position, clickListener)
+        holder.bind(restaurantList[position], clickListener)
         holder.itemView.search_restaurant_name.transitionName = "restaurant_name$position"
         holder.itemView.search_restaurant_picture.transitionName = "restaurant_picture$position"
         holder.itemView.search_restaurant_address.transitionName = "restaurant_address$position"
@@ -38,6 +36,7 @@ class SearchResultsAdapter(list: List<Restaurant>, val clickListener: (Restauran
         holder.itemView.search_restaurant_working_hours.transitionName = "restaurant_working_hours$position"
         holder.itemView.search_restaurant_star_icon.transitionName = "restaurant_star_icon$position"
         holder.itemView.search_restaurant_time_icon.transitionName = "restaurant_time_icon$position"
+        holder.itemView.search_results_recycler_row_card_view.transitionName = "restaurant_card$position"
 
     }
 
@@ -46,12 +45,13 @@ class SearchResultsAdapter(list: List<Restaurant>, val clickListener: (Restauran
     }
 }
 class SearchResultsViewHolder(val view: View): RecyclerView.ViewHolder(view){
-    fun bind(restaurant: Restaurant, position: Int, clickListener: (Restaurant, Int) -> Unit){
+    fun bind(restaurant: Restaurant, clickListener: (Restaurant) -> Unit){
         view.search_restaurant_name.text = restaurant.name
         Picasso.get().load("https://images.pexels.com/photos/1383776/pexels-photo-1383776.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260").fit().centerCrop().into(view.search_restaurant_picture)
         view.search_results_recycler_row_card_view.setOnClickListener {
-            Log.i("click", it.search_restaurant_picture.transitionName)
+            clickListener(restaurant)
             val extras = FragmentNavigatorExtras(
+                it.search_results_recycler_row_card_view to "restaurant_card",
                 it.search_restaurant_name to "restaurant_name",
                 it.search_restaurant_name to "restaurant_name",
                 it.search_restaurant_address to "restaurant_address",
@@ -65,24 +65,12 @@ class SearchResultsViewHolder(val view: View): RecyclerView.ViewHolder(view){
                 it.search_restaurant_star_icon to "restaurant_star_icon",
                 it.search_restaurant_time_icon to "restaurant_time_icon",
                 it.search_restaurant_picture to "restaurant_picture")
-            view?.findNavController()?.navigate(R.id.action_searchFragment_to_restaurantDetails,
-                null, // Bundle of args
-                null,
-                extras)
-        }
-    }
-}
-//item decoration class that makes sure there is equal padding around all recyclerview items
-class SearchResultsItemDecoration(private val spaceHeight: Int) : RecyclerView.ItemDecoration() {
-    override fun getItemOffsets(outRect: Rect, view: View,
-                                parent: RecyclerView, state: RecyclerView.State) {
-        with(outRect) {
-            if (parent.getChildAdapterPosition(view) == 0) {
-                top = spaceHeight
+            if (view?.findNavController().currentDestination?.id == R.id.searchFragment) {
+                view?.findNavController()?.navigate(R.id.action_searchFragment_to_restaurantDetails,
+                    null, // Bundle of args
+                    null,
+                    extras)
             }
-            left =  spaceHeight
-            right = spaceHeight
-            bottom = spaceHeight
         }
     }
 }

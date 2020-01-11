@@ -1,4 +1,4 @@
-package feri.itk.pojejinpovej.Fragments
+package feri.itk.pojejinpovej.UI.Fragments
 
 
 import android.os.Bundle

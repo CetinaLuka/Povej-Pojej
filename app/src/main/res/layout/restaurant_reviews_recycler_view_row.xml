@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/reviews_recycler_row_card_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="10dp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="8dp"
+        android:paddingVertical="8dp">
+
+        <me.zhanghai.android.materialratingbar.MaterialRatingBar
+            android:id="@+id/review_offer_rating"
+            style="@style/Widget.MaterialRatingBar.RatingBar"
+            android:layout_width="100dp"
+            android:layout_height="20dp"
+            android:transitionName="restaurant_star_icon"
+            app:layout_constraintBottom_toBottomOf="@+id/review_food_rating"
+            app:layout_constraintEnd_toStartOf="@+id/review_service_rating"
+            app:layout_constraintStart_toEndOf="@+id/review_food_rating"
+            app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+        <me.zhanghai.android.materialratingbar.MaterialRatingBar
+            android:id="@+id/review_service_rating"
+            style="@style/Widget.MaterialRatingBar.RatingBar"
+            android:layout_width="100dp"
+            android:layout_height="20dp"
+            android:transitionName="restaurant_star_icon"
+            app:layout_constraintBottom_toBottomOf="@+id/review_offer_rating"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView12" />
+
+        <me.zhanghai.android.materialratingbar.MaterialRatingBar
+            android:id="@+id/review_food_rating"
+            style="@style/Widget.MaterialRatingBar.RatingBar"
+            android:layout_width="100dp"
+            android:layout_height="20dp"
+            android:transitionName="restaurant_star_icon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+        <TextView
+            android:id="@+id/reviewer_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:text="Janez Novak"
+            android:textColor="@color/primaryText"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/review_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="pred 3. meseci"
+            android:textColor="@color/primaryText"
+            app:layout_constraintBottom_toBottomOf="@+id/reviewer_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/reviewer_name" />
+
+        <TextView
+            android:id="@+id/review"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+            android:textColor="@color/lightText"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/review_dislike_button"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/review_food_rating" />
+
+        <ImageButton
+            android:id="@+id/review_like_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background='?attr/selectableItemBackgroundBorderless'
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="8dp"
+            android:tint="@color/lightText"
+            app:layout_constraintBottom_toTopOf="@+id/textView9"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/ic_thumb_up_black_24dp" />
+
+        <ImageButton
+            android:id="@+id/review_dislike_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background='?attr/selectableItemBackgroundBorderless'
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="8dp"
+            android:tint="@color/lightText"
+            app:layout_constraintEnd_toEndOf="@+id/review_like_button"
+            app:layout_constraintStart_toStartOf="@+id/review_like_button"
+            app:layout_constraintTop_toBottomOf="@+id/textView9"
+            app:srcCompat="@drawable/ic_thumb_down_black_24dp" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+106"
+            android:textColor="@color/primaryText"
+            app:layout_constraintBottom_toBottomOf="@+id/review"
+            app:layout_constraintEnd_toEndOf="@+id/review_like_button"
+            app:layout_constraintStart_toStartOf="@+id/review_like_button"
+            app:layout_constraintTop_toTopOf="@+id/review" />
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/rating_food"
+            android:textColor="@color/primaryText"
+            app:layout_constraintEnd_toEndOf="@+id/review_food_rating"
+            app:layout_constraintStart_toStartOf="@+id/review_food_rating"
+            app:layout_constraintTop_toBottomOf="@+id/reviewer_name" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/rating_offer"
+            android:textColor="@color/primaryText"
+            app:layout_constraintBottom_toTopOf="@+id/review_food_rating"
+            app:layout_constraintEnd_toEndOf="@+id/review_offer_rating"
+            app:layout_constraintStart_toStartOf="@+id/review_offer_rating"
+            app:layout_constraintTop_toTopOf="@+id/textView10" />
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/rating_service"
+            android:textColor="@color/primaryText"
+            app:layout_constraintBottom_toBottomOf="@+id/textView11"
+            app:layout_constraintEnd_toEndOf="@+id/review_service_rating"
+            app:layout_constraintStart_toStartOf="@+id/review_service_rating"
+            app:layout_constraintTop_toTopOf="@+id/textView11" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
