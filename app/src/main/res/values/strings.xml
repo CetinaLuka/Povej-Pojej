@@ -6,6 +6,7 @@
     <string name="login_text">Prijavite se s svojim Google računom</string>
     <string name="login_description">Zaradi preprečevanja zlorab sistema ocenjevanja aplikacij se v aplikacijo prijavite s svojim Google računom</string>
     <string name="login_button_text">PRIJAVA</string>
+    <string name="logout_button_text">ODJAVA</string>
 
     <!-- Main screen fragment -->
     <string name="main_screen_suggested_text">Priporočene restavracije za vas</string>
@@ -22,4 +23,10 @@
 
     <!-- general error messages -->
     <string name="not_available_error">Ni na voljo</string>
+
+    <!-- facebook -->
+    <string name="facebook_app_id">778513599298908</string>
+    <string name="fb_login_protocol_scheme">fb778513599298908</string>
+    <string name="facebook_client_token">8209f3e23f3646fdbd5fe7c6f9facd9d</string>
+
 </resources>
