@@ -51,10 +51,11 @@ class SearchFragment : Fragment(), MaterialSearchBar.OnSearchActionListener {
         initCityDropdown()
         initFilterDropdown()
 
-        if(arguments!!.getBoolean("fromMainScreen")){
+        //argument to know if the previous fragment was search fragment and the search must be enabled (clicked)
+        /*if(arguments!!.getBoolean("fromMainScreen")){
             searchBar.enableSearch()
-        }
-        Toast.makeText(context, arguments!!.getBoolean("fromMainScreen").toString(), Toast.LENGTH_SHORT).show()
+        }*/
+
         searchBar.setOnSearchActionListener(this)
 
         restaurant_open_group.addOnButtonCheckedListener { group, checkedId, isChecked ->
