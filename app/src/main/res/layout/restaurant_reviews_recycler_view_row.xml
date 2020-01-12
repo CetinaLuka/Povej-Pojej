@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/reviews_recycler_row_card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -23,30 +24,31 @@
             style="@style/Widget.MaterialRatingBar.RatingBar"
             android:layout_width="100dp"
             android:layout_height="20dp"
+            android:isIndicator="true"
             android:transitionName="restaurant_star_icon"
             app:layout_constraintBottom_toBottomOf="@+id/review_food_rating"
             app:layout_constraintEnd_toStartOf="@+id/review_service_rating"
-            app:layout_constraintStart_toEndOf="@+id/review_food_rating"
-            app:layout_constraintTop_toBottomOf="@+id/textView11" />
+            app:layout_constraintStart_toEndOf="@+id/review_food_rating" />
 
         <me.zhanghai.android.materialratingbar.MaterialRatingBar
             android:id="@+id/review_service_rating"
             style="@style/Widget.MaterialRatingBar.RatingBar"
             android:layout_width="100dp"
             android:layout_height="20dp"
+            android:isIndicator="true"
             android:transitionName="restaurant_star_icon"
             app:layout_constraintBottom_toBottomOf="@+id/review_offer_rating"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView12" />
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <me.zhanghai.android.materialratingbar.MaterialRatingBar
             android:id="@+id/review_food_rating"
             style="@style/Widget.MaterialRatingBar.RatingBar"
             android:layout_width="100dp"
             android:layout_height="20dp"
+            android:isIndicator="true"
             android:transitionName="restaurant_star_icon"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView10" />
+            app:layout_constraintTop_toBottomOf="@+id/review" />
 
         <TextView
             android:id="@+id/reviewer_name"
@@ -55,7 +57,8 @@
             android:fontFamily="sans-serif"
             android:text="Janez Novak"
             android:textColor="@color/primaryText"
-            android:textSize="18sp"
+            android:textSize="14sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -63,25 +66,27 @@
             android:id="@+id/review_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:text="pred 3. meseci"
             android:textColor="@color/primaryText"
             app:layout_constraintBottom_toBottomOf="@+id/reviewer_name"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/reviewer_name"
             app:layout_constraintTop_toTopOf="@+id/reviewer_name" />
 
         <TextView
             android:id="@+id/review"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
+            android:ellipsize="end"
+            android:maxLines="6"
             android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
             android:textColor="@color/lightText"
-            android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:textSize="14sp"
             app:layout_constraintEnd_toStartOf="@+id/review_dislike_button"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/review_food_rating" />
+            app:layout_constraintTop_toBottomOf="@+id/reviewer_name" />
 
         <ImageButton
             android:id="@+id/review_like_button"
@@ -118,39 +123,6 @@
             app:layout_constraintEnd_toEndOf="@+id/review_like_button"
             app:layout_constraintStart_toStartOf="@+id/review_like_button"
             app:layout_constraintTop_toTopOf="@+id/review" />
-
-        <TextView
-            android:id="@+id/textView10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@string/rating_food"
-            android:textColor="@color/primaryText"
-            app:layout_constraintEnd_toEndOf="@+id/review_food_rating"
-            app:layout_constraintStart_toStartOf="@+id/review_food_rating"
-            app:layout_constraintTop_toBottomOf="@+id/reviewer_name" />
-
-        <TextView
-            android:id="@+id/textView11"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/rating_offer"
-            android:textColor="@color/primaryText"
-            app:layout_constraintBottom_toTopOf="@+id/review_food_rating"
-            app:layout_constraintEnd_toEndOf="@+id/review_offer_rating"
-            app:layout_constraintStart_toStartOf="@+id/review_offer_rating"
-            app:layout_constraintTop_toTopOf="@+id/textView10" />
-
-        <TextView
-            android:id="@+id/textView12"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/rating_service"
-            android:textColor="@color/primaryText"
-            app:layout_constraintBottom_toBottomOf="@+id/textView11"
-            app:layout_constraintEnd_toEndOf="@+id/review_service_rating"
-            app:layout_constraintStart_toStartOf="@+id/review_service_rating"
-            app:layout_constraintTop_toTopOf="@+id/textView11" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

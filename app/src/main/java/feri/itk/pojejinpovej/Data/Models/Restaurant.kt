@@ -18,4 +18,7 @@ data class Restaurant (
         }
         return Review("x")
     }
+    fun addReview(review: Review){
+        reviews.add(review)
+    }
 }

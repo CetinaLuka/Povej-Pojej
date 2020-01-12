@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import feri.itk.pojejinpovej.Data.Models.Restaurant
 import feri.itk.pojejinpovej.Data.Models.Review
+import java.util.*
 
 //class that hold data which is displayed in the restaurant details screen
 //when a restaurant in a list is clicked the restaurant var is set to its value
@@ -18,6 +19,11 @@ class RestaurantDetailsViewModel: ViewModel() {
     }
     fun setRestaurant(restaurant: Restaurant){
         this.restaurant.value = restaurant
+    }
+
+    fun addReview(food: Float, offer: Float, service: Float, text: String){
+        val newReview = Review(text = text, foodRating = food.toDouble(), offerRating = offer.toDouble(), serviceRating = service.toDouble())
+        restaurant.value?.addReview(newReview)
     }
 
     fun reviewLiked(review: Review){

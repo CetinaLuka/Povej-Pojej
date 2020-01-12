@@ -1,6 +1,7 @@
 package feri.itk.pojejinpovej.UI.Fragments
 
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -12,6 +13,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.transition.TransitionInflater
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.squareup.picasso.Picasso
 import feri.itk.pojejinpovej.Data.Models.Restaurant
 import feri.itk.pojejinpovej.Data.Models.Review
@@ -20,7 +22,10 @@ import feri.itk.pojejinpovej.R
 import feri.itk.pojejinpovej.UI.Adapters.RestaurantReviewsAdapter
 import feri.itk.pojejinpovej.Util.RecyclerViewItemDecoration
 import kotlinx.android.synthetic.main.fragment_restaurant_details.*
+import kotlinx.android.synthetic.main.review_alert.view.*
 import java.lang.Exception
+import java.util.*
+import kotlin.collections.ArrayList
 
 /**
  * A simple [Fragment] subclass.
@@ -49,6 +54,9 @@ class RestaurantDetails : Fragment() {
         restaurantViewModel.getRestaurant().observe(this, Observer { restaurant ->
             loadRestaurantData(restaurant)
         })
+        addReviewFAB.setOnClickListener {
+            openReviewAlert()
+        }
 
     }
 
@@ -58,6 +66,11 @@ class RestaurantDetails : Fragment() {
         details_restaurant_address.text = restaurant.address
         details_restaurant_description.text = restaurant.description
         details_restaurant_price.text = restaurant.price.toString()
+        //ATTENTION NOT LIVE DATA MUST BE FIXED
+        details_restaurant_food_rating_stars.rating = 4.3.toFloat()
+        details_restaurant_offer_rating_stars.rating = 2.3.toFloat()
+        details_restaurant_service_rating_stars.rating = 4.7.toFloat()
+
         setupReviewsList(restaurant.reviews)
     }
 
@@ -109,6 +122,29 @@ class RestaurantDetails : Fragment() {
     }
     private fun reviewDislikeButtonClicked(review: Review){
         restaurantViewModel.reviewDisliked(review)
+    }
+    private fun openReviewAlert(){
+        val alertView = LayoutInflater.from(context).inflate(R.layout.review_alert, view as ViewGroup, false)
+        MaterialAlertDialogBuilder(context)
+            .setTitle(R.string.rate_restaurant_title)
+            .setMessage(resources.getString(R.string.rate_restaurant_text))
+            .setNegativeButton(resources.getString(R.string.cancel), null)
+            .setPositiveButton(resources.getString(R.string.confirm)){ _, _ ->
+                val food = alertView.review_alert_food_rating.rating
+                val offer = alertView.review_alert_offer_rating.rating
+                val service = alertView.review_alert_service_rating.rating
+                val reviewText = alertView.review_input.text.toString()
+                restaurantViewModel.addReview(food, offer, service, reviewText)
+                Toast.makeText(context, R.string.review_sent, Toast.LENGTH_SHORT).show()
+                Log.i("review", reviewText)
+            }
+            .setOnDismissListener {
+                val parent = alertView.parent as ViewGroup
+                parent.removeView(alertView)
+            }
+            .setView(alertView)
+            .show()
+
     }
 
 }

@@ -19,6 +19,11 @@
     <string name="rating_service">Postrežba</string>
     <string name="currency">€</string>
     <string name="error_loading_restaurant_picture">Prišlo je do napake pri nalaganju slike</string>
+    <string name="rate_restaurant_title">Ocenite restavracijo</string>
+    <string name="rate_restaurant_text">Ocenite restavracijo na kriterijih hrana, ponudba in postrežba z oceno 1–5 in napišite komentar.</string>
+    <string name="cancel">Prekini</string>
+    <string name="confirm">Potrdi</string>
+    <string name="review_sent">Vaša ocena je bila oddana</string>
 
 
     <!-- general error messages -->
