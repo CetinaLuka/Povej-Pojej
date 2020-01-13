@@ -3,13 +3,13 @@ package feri.itk.pojejinpovej.Data.Models
 import feri.itk.pojejinpovej.R
 
 data class Restaurant (
-    val name: String = "",
-    val picture: String = "",
-    val price: Double = 0.0,
-    val address: String = "",
-    val postCode: String = "",
-    val description: String = "",
-    val reviews: ArrayList<Review> = ArrayList()
+    var name: String = "",
+    var picture: String = "",
+    var price: Double = 0.0,
+    var address: String = "",
+    var postCode: String = "",
+    var description: String = "",
+    var reviews: ArrayList<Review> = ArrayList()
 ){
     fun findReview(review: Review): Review{
         for(r in reviews){

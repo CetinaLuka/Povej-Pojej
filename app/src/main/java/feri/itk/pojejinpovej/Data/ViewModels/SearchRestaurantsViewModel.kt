@@ -2,6 +2,7 @@ package feri.itk.pojejinpovej.Data.ViewModels
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import feri.itk.pojejinpovej.Data.FirebaseDatabase
 import feri.itk.pojejinpovej.Data.Models.Restaurant
 import feri.itk.pojejinpovej.Data.Models.Review
 import feri.itk.pojejinpovej.Data.RestaurantRepository
@@ -9,6 +10,7 @@ import feri.itk.pojejinpovej.Data.RestaurantRepository
 class SearchRestaurantsViewModel: ViewModel() {
     private lateinit var restaurants: MutableLiveData<List<Restaurant>>
     private val restaurantRepository = RestaurantRepository
+    private val firebaseDatabase = FirebaseDatabase
 
     fun getRestaurants(): MutableLiveData<List<Restaurant>>{
         if(!::restaurants.isInitialized){
@@ -18,6 +20,7 @@ class SearchRestaurantsViewModel: ViewModel() {
     }
     private fun loadRestaurants(){
 
-        this.restaurants = restaurantRepository.returnAllRestaurants()
+        //this.restaurants = restaurantRepository.returnAllRestaurants()
+        this.restaurants = firebaseDatabase.returnAllRestaurants()
     }
 }
