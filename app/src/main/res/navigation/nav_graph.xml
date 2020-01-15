@@ -19,12 +19,19 @@
         <action
             android:id="@+id/action_mainScreen_to_restaurantDetails"
             app:destination="@id/restaurantDetails" />
+        <argument
+            android:name="userId"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/login"
         android:name="feri.itk.pojejinpovej.UI.Fragments.login"
         android:label="fragment_login"
-        tools:layout="@layout/fragment_login" />
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_login_to_mainScreen"
+            app:destination="@id/mainScreen" />
+    </fragment>
     <fragment
         android:id="@+id/searchFragment"
         android:name="feri.itk.pojejinpovej.UI.Fragments.SearchFragment"

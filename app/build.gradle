@@ -84,4 +84,10 @@ dependencies {
     //firebase realtime database kotlin
     implementation 'com.google.firebase:firebase-database-ktx:19.2.0'
 
+    //google play services
+    implementation 'com.google.android.gms:play-services-auth:17.0.0'
+
+    //facebook library for auth
+    implementation 'com.facebook.android:facebook-login:[5,6)'
+
 }
