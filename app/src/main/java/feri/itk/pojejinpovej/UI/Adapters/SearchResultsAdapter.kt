@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.search_results_recycler_row.view.*
 import kotlinx.android.synthetic.main.suggestion_recycler_row.view.*
 
 class SearchResultsAdapter(list: List<Restaurant>, val clickListener: (Restaurant) -> Unit): RecyclerView.Adapter<SearchResultsViewHolder>(){
-    val restaurantList = list
+    private val restaurantList = list
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchResultsViewHolder {
         val layoutInflater = LayoutInflater.from(parent?.context)

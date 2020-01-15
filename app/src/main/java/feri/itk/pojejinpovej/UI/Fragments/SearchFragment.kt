@@ -2,6 +2,8 @@ package feri.itk.pojejinpovej.UI.Fragments
 
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -28,7 +30,7 @@ import kotlinx.android.synthetic.main.fragment_search.searchBar
 /**
  * A simple [Fragment] subclass.
  */
-class SearchFragment : Fragment(), MaterialSearchBar.OnSearchActionListener {
+class SearchFragment : Fragment(), MaterialSearchBar.OnSearchActionListener, TextWatcher {
 
     lateinit var searchRestaurantsViewModel: SearchRestaurantsViewModel
     lateinit var restaurantDetailsViewModel: RestaurantDetailsViewModel
@@ -62,9 +64,17 @@ class SearchFragment : Fragment(), MaterialSearchBar.OnSearchActionListener {
             Toast.makeText(context, checkedId, Toast.LENGTH_SHORT).show()
         }
         setupSearchResultsList()
+        filter_drop_down.setOnItemSelectedListener { view, position, id, item ->
+            Toast.makeText(context, item.toString(), Toast.LENGTH_SHORT).show()
+            filterSelected(item.toString())
+        }
+        searchBar.addTextChangeListener(this)
 
     }
 
+    private fun filterSelected(item: String){
+
+    }
 
     private fun setupSearchResultsList() {
 
@@ -74,12 +84,12 @@ class SearchFragment : Fragment(), MaterialSearchBar.OnSearchActionListener {
             val layoutManager = LinearLayoutManager(context)
             searchResultsRecycler.layoutManager = layoutManager
             searchResultsRecycler.adapter = searchResultsAdapter
-            searchResultsRecycler.addItemDecoration(
-                RecyclerViewItemDecoration(
-                    resources.getDimension(R.dimen.search_results_row_padding).toInt()
-                )
-            )
         })
+        search_results_recycler.addItemDecoration(
+            RecyclerViewItemDecoration(
+                resources.getDimension(R.dimen.search_results_row_padding).toInt()
+            )
+        )
     }
 
     private fun searchItemClicked(restaurant: Restaurant){
@@ -89,7 +99,7 @@ class SearchFragment : Fragment(), MaterialSearchBar.OnSearchActionListener {
     }
 
     private fun initCityDropdown(){
-        city_drop_down.setItems("Celje", "Maribor", "Ljubljana")
+        city_drop_down.setItems("Maribor")
     }
     private fun initFilterDropdown(){
         filter_drop_down.setItems("Cena", "Oddaljenost", "Ocena")
@@ -110,14 +120,29 @@ class SearchFragment : Fragment(), MaterialSearchBar.OnSearchActionListener {
     }
 
     override fun onSearchStateChanged(enabled: Boolean) {
-
         if(!enabled){
-            searchBarBackButtonClicked()
+            Toast.makeText(context, "disabled", Toast.LENGTH_SHORT).show()
+            //searchBarBackButtonClicked()
+        }
+        else{
+            Toast.makeText(context, "enabled", Toast.LENGTH_SHORT).show()
         }
     }
 
     override fun onSearchConfirmed(text: CharSequence?) {
+        Toast.makeText(context, text.toString(), Toast.LENGTH_SHORT).show()
+    }
 
+    override fun afterTextChanged(s: Editable?) {
+
+    }
+
+    override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+    }
+
+    override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+        searchRestaurantsViewModel.filterRestaurants(searchBar.text)
     }
 
 }
