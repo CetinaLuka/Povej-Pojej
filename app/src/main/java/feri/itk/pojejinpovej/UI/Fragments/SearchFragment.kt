@@ -66,14 +66,14 @@ class SearchFragment : Fragment(), MaterialSearchBar.OnSearchActionListener, Tex
         setupSearchResultsList()
         filter_drop_down.setOnItemSelectedListener { view, position, id, item ->
             Toast.makeText(context, item.toString(), Toast.LENGTH_SHORT).show()
-            filterSelected(item.toString())
+            filterSelected(position)
         }
         searchBar.addTextChangeListener(this)
 
     }
 
-    private fun filterSelected(item: String){
-
+    private fun filterSelected(position: Int){
+        searchRestaurantsViewModel.sortRestaurants(position)
     }
 
     private fun setupSearchResultsList() {
@@ -102,7 +102,7 @@ class SearchFragment : Fragment(), MaterialSearchBar.OnSearchActionListener, Tex
         city_drop_down.setItems("Maribor")
     }
     private fun initFilterDropdown(){
-        filter_drop_down.setItems("Cena", "Oddaljenost", "Ocena")
+        filter_drop_down.setItems("Abeceda", "Ocena", "Oddaljenost", "Cena")
     }
 
     private fun searchBarBackButtonClicked(){
