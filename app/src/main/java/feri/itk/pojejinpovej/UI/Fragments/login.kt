@@ -72,7 +72,7 @@ class login : Fragment() {
         super.onActivityCreated(savedInstanceState)
         firebaseAuth = FirebaseAuth.getInstance()
 
-        if(firebaseAuth.currentUser==null){
+        /*if(firebaseAuth.currentUser==null){
             logout_button.isClickable=false
             logout_button.visibility=View.INVISIBLE
         }
@@ -82,7 +82,7 @@ class login : Fragment() {
             google_login_button.isClickable=false
             google_login_button.visibility=View.INVISIBLE
             textView4.visibility=View.INVISIBLE
-        }
+        }*/
         //Google
         initGoogleOptions()
         setupUI()
@@ -115,20 +115,7 @@ class login : Fragment() {
         }
 
 
-        //logout
-        logout_button.setOnClickListener {
-            mGoogleSignInClient.signOut()
-            FirebaseAuth.getInstance().signOut()
-            LoginManager.getInstance().logOut()
-            Toast.makeText(activity,"Logged out",Toast.LENGTH_SHORT).show()
-            val extras = FragmentNavigatorExtras(
-                searchBar to "search_bar",
-                search_header to "header")
-            view?.findNavController()?.navigate(R.id.action_login_to_mainScreen,
-                null, // Bundle of args
-                null, // NavOptions
-                null)
-        }
+
     }
 
     private fun initGoogleOptions(){
@@ -174,18 +161,19 @@ class login : Fragment() {
         val credential=GoogleAuthProvider.getCredential(acct.idToken,null)
         firebaseAuth.signInWithCredential(credential).addOnCompleteListener{
             if(it.isSuccessful){
-                Toast.makeText(activity,"Google Sign In successful as "+firebaseAuth.currentUser?.email,Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity,"Uspešno ste prijavljeni kot "+firebaseAuth.currentUser?.displayName,Toast.LENGTH_SHORT).show()
                 val bundle = bundleOf("userId" to firebaseAuth.currentUser?.uid)
                 val extras = FragmentNavigatorExtras(
                     searchBar to "search_bar",
                     search_header to "header")
+                mGoogleSignInClient.signOut()
                 view?.findNavController()?.navigate(R.id.action_login_to_mainScreen,
                     bundle, // Bundle of args
                     null, // NavOptions
                     null)
             }
             else{
-                Toast.makeText(activity,"Google Sign In failed",Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity,"Google Sign In neuspešen, poskusite ponovno",Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -199,7 +187,7 @@ class login : Fragment() {
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d(TAG, "signInWithFacebookCredential:success")
-                    Toast.makeText(activity,"Facebook Sign In successful as "+firebaseAuth.currentUser?.displayName,Toast.LENGTH_SHORT).show()
+                    Toast.makeText(activity,"Uspešno ste prijavljeni kot "+firebaseAuth.currentUser?.displayName,Toast.LENGTH_SHORT).show()
                     val user = firebaseAuth.currentUser
                     val bundle = bundleOf("userId" to firebaseAuth.currentUser?.uid)
                     val extras = FragmentNavigatorExtras(
@@ -212,7 +200,7 @@ class login : Fragment() {
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w(TAG, "signInWithFacebookCredential:failure", task.exception)
-                    Toast.makeText(activity, "Authentication failed.",
+                    Toast.makeText(activity, "Facebook prijava neuspešna, poskusite ponovno",
                         Toast.LENGTH_SHORT).show()
                 }
 

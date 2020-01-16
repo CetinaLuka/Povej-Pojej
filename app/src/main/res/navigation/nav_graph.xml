@@ -22,6 +22,9 @@
         <argument
             android:name="userId"
             app:argType="string" />
+        <action
+            android:id="@+id/action_mainScreen_to_userProfile"
+            app:destination="@id/userProfile" />
     </fragment>
     <fragment
         android:id="@+id/login"
@@ -53,4 +56,13 @@
         android:name="feri.itk.pojejinpovej.UI.Fragments.RestaurantDetails"
         android:label="fragment_restaurant_details"
         tools:layout="@layout/fragment_restaurant_details" />
+    <fragment
+        android:id="@+id/userProfile"
+        android:name="feri.itk.pojejinpovej.UI.Fragments.UserProfile"
+        android:label="UserProfile"
+        tools:layout="@layout/fragment_user_profile" >
+        <action
+            android:id="@+id/action_userProfile_to_mainScreen"
+            app:destination="@id/mainScreen" />
+    </fragment>
 </navigation>

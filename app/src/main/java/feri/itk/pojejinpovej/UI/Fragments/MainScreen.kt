@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.transition.TransitionInflater
+import com.google.firebase.auth.FirebaseAuth
 import com.yarolegovich.discretescrollview.DiscreteScrollView
 import com.yarolegovich.discretescrollview.transform.Pivot
 import com.yarolegovich.discretescrollview.transform.ScaleTransformer
@@ -21,6 +22,7 @@ import feri.itk.pojejinpovej.UI.Adapters.SuggestionsRecyclerAdapter
 import feri.itk.pojejinpovej.Data.Models.Restaurant
 import feri.itk.pojejinpovej.Data.ViewModels.RestaurantDetailsViewModel
 import feri.itk.pojejinpovej.Data.ViewModels.SuggestedRestaurantsViewModel
+import kotlinx.android.synthetic.main.fragment_login.*
 import kotlinx.android.synthetic.main.fragment_main_screen.*
 
 /**
@@ -31,6 +33,8 @@ class MainScreen : Fragment() {
     lateinit var restaurantDetailsViewModel: RestaurantDetailsViewModel
     lateinit var suggestedRestaurantsViewModel: SuggestedRestaurantsViewModel
 
+    private lateinit var firebaseAuth: FirebaseAuth
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -38,6 +42,17 @@ class MainScreen : Fragment() {
         // Inflate the layout for this fragment
         sharedElementEnterTransition = TransitionInflater.from(context).inflateTransition(R.transition.shared_element_transition)
         return inflater.inflate(R.layout.fragment_main_screen, container, false)
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        firebaseAuth = FirebaseAuth.getInstance()
+
+        if(firebaseAuth.currentUser!=null){
+            main_screen_account_button.visibility=View.INVISIBLE
+            main_screen_user_profile_button.visibility=View.VISIBLE
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -58,6 +73,10 @@ class MainScreen : Fragment() {
         main_screen_account_button.setOnClickListener {
             openLogin()
         }
+
+        main_screen_user_profile_button.setOnClickListener {
+            openUserSettings()
+        }
     }
 
 
@@ -72,6 +91,18 @@ class MainScreen : Fragment() {
             null, // NavOptions
             extras)
     }
+
+    //function that specifyes shared elements between main and user profile screen and starts navigation to user profile screen
+    private fun openUserSettings(){
+        val extras = FragmentNavigatorExtras(
+            main_screen_title to "main_screen_login_title",
+            main_screen_background to "header")
+        view?.findNavController()?.navigate(R.id.action_mainScreen_to_userProfile,
+            null, // Bundle of args
+            null, // NavOptions
+            null)
+    }
+
     //function that specifyes shared elements between main and search screen and starts navigation to search screen
     private fun openSearchScreen(){
         val extras = FragmentNavigatorExtras(
