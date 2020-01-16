@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -16,6 +17,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.transition.TransitionInflater
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.mancj.materialsearchbar.MaterialSearchBar
 import feri.itk.pojejinpovej.UI.Adapters.SearchResultsAdapter
 import feri.itk.pojejinpovej.Data.Models.Restaurant
@@ -24,6 +26,7 @@ import feri.itk.pojejinpovej.Data.ViewModels.SearchRestaurantsViewModel
 
 import feri.itk.pojejinpovej.R
 import feri.itk.pojejinpovej.Util.RecyclerViewItemDecoration
+import kotlinx.android.synthetic.main.fragment_restaurant_locations_map.*
 import kotlinx.android.synthetic.main.fragment_search.*
 import kotlinx.android.synthetic.main.fragment_search.searchBar
 
@@ -32,8 +35,8 @@ import kotlinx.android.synthetic.main.fragment_search.searchBar
  */
 class SearchFragment : Fragment(), MaterialSearchBar.OnSearchActionListener, TextWatcher {
 
-    lateinit var searchRestaurantsViewModel: SearchRestaurantsViewModel
-    lateinit var restaurantDetailsViewModel: RestaurantDetailsViewModel
+    private lateinit var searchRestaurantsViewModel: SearchRestaurantsViewModel
+    private lateinit var restaurantDetailsViewModel: RestaurantDetailsViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -68,7 +71,24 @@ class SearchFragment : Fragment(), MaterialSearchBar.OnSearchActionListener, Tex
             filterSelected(position)
         }
         searchBar.addTextChangeListener(this)
+        openMapsFAB.setOnClickListener {
+            navigateToMapsFragment()
+        }
 
+    }
+
+    private fun navigateToMapsFragment(){
+        view?.findNavController()?.navigate(R.id.action_searchFragment_to_restaurantLocationsMap,
+            null, // Bundle of args
+            null,
+            null)
+        /*val restaurantLocationsMap = layoutInflater.inflate(R.layout.fragment_restaurant_locations_map, null)
+        val dialog = BottomSheetDialog(context!!)
+        dialog.setContentView(restaurantLocationsMap)
+        dialog.show()
+        restaurantLocationsMap.findViewById<TextView>(R.id.textView).setOnClickListener {
+            dialog.dismiss()
+        }*/
     }
 
     private fun filterSelected(position: Int){

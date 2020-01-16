@@ -47,10 +47,17 @@
             android:name="fromMainScreen"
             app:argType="boolean"
             android:defaultValue="false" />
+        <action
+            android:id="@+id/action_searchFragment_to_restaurantLocationsMap"
+            app:destination="@id/restaurantLocationsMap" />
     </fragment>
     <fragment
         android:id="@+id/restaurantDetails"
         android:name="feri.itk.pojejinpovej.UI.Fragments.RestaurantDetails"
         android:label="fragment_restaurant_details"
         tools:layout="@layout/fragment_restaurant_details" />
+    <fragment
+        android:id="@+id/restaurantLocationsMap"
+        android:name="feri.itk.pojejinpovej.UI.Fragments.RestaurantLocationsMap"
+        android:label="RestaurantLocationsMap" />
 </navigation>

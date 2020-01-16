@@ -41,4 +41,7 @@
     <string name="fb_login_protocol_scheme">fb778513599298908</string>
     <string name="facebook_client_token">8209f3e23f3646fdbd5fe7c6f9facd9d</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>
