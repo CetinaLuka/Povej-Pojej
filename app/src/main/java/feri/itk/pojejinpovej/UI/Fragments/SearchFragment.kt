@@ -60,12 +60,11 @@ class SearchFragment : Fragment(), MaterialSearchBar.OnSearchActionListener, Tex
 
         searchBar.setOnSearchActionListener(this)
 
-        restaurant_open_group.addOnButtonCheckedListener { group, checkedId, isChecked ->
-            Toast.makeText(context, checkedId, Toast.LENGTH_SHORT).show()
+        restaurant_open_group.addOnButtonCheckedListener { _, _, isChecked ->
+            searchRestaurantsViewModel.filterOpenRestaurants(isChecked, searchBar.text)
         }
         setupSearchResultsList()
-        filter_drop_down.setOnItemSelectedListener { view, position, id, item ->
-            Toast.makeText(context, item.toString(), Toast.LENGTH_SHORT).show()
+        filter_drop_down.setOnItemSelectedListener { _, position, _, _ ->
             filterSelected(position)
         }
         searchBar.addTextChangeListener(this)
