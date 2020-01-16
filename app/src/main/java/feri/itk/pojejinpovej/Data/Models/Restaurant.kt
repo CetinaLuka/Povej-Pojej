@@ -1,5 +1,6 @@
 package feri.itk.pojejinpovej.Data.Models
 
+import android.util.Log
 import feri.itk.pojejinpovej.R
 
 data class Restaurant (
@@ -9,7 +10,8 @@ data class Restaurant (
     var address: String = "",
     var postCode: String = "",
     var description: String = "",
-    var reviews: ArrayList<Review> = ArrayList()
+    var reviews: ArrayList<Review> = ArrayList(),
+    var workingHours: WorkingHours = WorkingHours()
 ){
     fun findReview(review: Review): Review{
         for(r in reviews){
@@ -20,5 +22,9 @@ data class Restaurant (
     }
     fun addReview(review: Review){
         reviews.add(review)
+    }
+    fun isOpenNow():Boolean{
+        Log.i("open", "$name - ${workingHours.isOpenNow()}")
+        return workingHours.isOpenNow()
     }
 }

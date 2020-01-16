@@ -50,6 +50,9 @@
             android:name="fromMainScreen"
             app:argType="boolean"
             android:defaultValue="false" />
+        <action
+            android:id="@+id/action_searchFragment_to_restaurantLocationsMap"
+            app:destination="@id/restaurantLocationsMap" />
     </fragment>
     <fragment
         android:id="@+id/restaurantDetails"
@@ -65,4 +68,8 @@
             android:id="@+id/action_userProfile_to_mainScreen"
             app:destination="@id/mainScreen" />
     </fragment>
+    <fragment
+        android:id="@+id/restaurantLocationsMap"
+        android:name="feri.itk.pojejinpovej.UI.Fragments.RestaurantLocationsMap"
+        android:label="RestaurantLocationsMap" />
 </navigation>

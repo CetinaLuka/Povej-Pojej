@@ -1,6 +1,7 @@
 package feri.itk.pojejinpovej.Data.ViewModels
 
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import feri.itk.pojejinpovej.Data.FirebaseDatabase
@@ -44,5 +45,24 @@ class SearchRestaurantsViewModel: ViewModel() {
                 Log.i("sort", "sorting by name")
             }
         }
+    }
+    fun filterOpenRestaurants(open: Boolean, filter: String){
+        Log.i("open", "$open ($filter)")
+        var filteredRestaurants = ArrayList<Restaurant>()
+        if(open){
+            for(r in filterRestaurants.value!!){
+                if(!r.isOpenNow()){
+                    filteredRestaurants.add(r)
+                }
+            }
+            filterRestaurants.value = filteredRestaurants
+        }
+        else{
+            Log.i("open", "untoggle")
+            filteredRestaurants.addAll(restaurants.value!!)
+            filterRestaurants.value = filteredRestaurants
+            filterRestaurants(filter)
+        }
+
     }
 }

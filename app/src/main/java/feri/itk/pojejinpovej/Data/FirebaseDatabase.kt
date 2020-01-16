@@ -37,7 +37,7 @@ object FirebaseDatabase {
                     r.name = ds.child("name").value.toString()
                     r.picture = ds.child("picture").value.toString()
                     r.price = ds.child("price").value.toString().toDouble()
-                    r.address = ds.child("adress").value.toString()
+                    r.address = ds.child("address").value.toString()
                     r.postCode = ds.child("postCode").value.toString()
                     r.description = ds.child("description").value.toString()
                     listek.add(r)
