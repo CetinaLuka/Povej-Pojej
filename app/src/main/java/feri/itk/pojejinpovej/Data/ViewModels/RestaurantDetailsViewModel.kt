@@ -30,11 +30,15 @@ class RestaurantDetailsViewModel: ViewModel() {
         val r = restaurant.value?.findReview(review)
         if(r?.id != "x")
             r!!.reviewLiked()
+        val rest = restaurant.value
+        restaurant.value = rest
     }
     fun reviewDisliked(review: Review){
         val r = restaurant.value?.findReview(review)
         if(r?.id != "x")
             r!!.reviewDisliked()
+        val rest = restaurant.value
+        restaurant.value = rest
     }
 
     private fun noRestaurantSelected(){

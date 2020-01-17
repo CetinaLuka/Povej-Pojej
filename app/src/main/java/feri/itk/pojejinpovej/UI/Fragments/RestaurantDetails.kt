@@ -54,6 +54,11 @@ class RestaurantDetails : Fragment() {
         restaurantViewModel.getRestaurant().observe(this, Observer { restaurant ->
             loadRestaurantData(restaurant)
         })
+        restaurant_reviews_recycler_view.addItemDecoration(
+            RecyclerViewItemDecoration(
+                resources.getDimension(R.dimen.search_results_row_padding).toInt()
+            )
+        )
         addReviewFAB.setOnClickListener {
             openReviewAlert()
         }
@@ -107,15 +112,10 @@ class RestaurantDetails : Fragment() {
     private fun setupReviewsList(reviews: ArrayList<Review>) {
         val reviewsAdapter =
             RestaurantReviewsAdapter(reviews,{review: Review -> reviewLikeButtonClicked(review)}, {review: Review -> reviewDislikeButtonClicked(review)})
-        val restauranReviewsRecycler = restaurant_reviews_recycler_view
+        val restaurantReviewsRecycler = restaurant_reviews_recycler_view
         val layoutManager = LinearLayoutManager(context)
-        restauranReviewsRecycler.layoutManager = layoutManager
-        restauranReviewsRecycler.adapter = reviewsAdapter
-        restauranReviewsRecycler.addItemDecoration(
-            RecyclerViewItemDecoration(
-                resources.getDimension(R.dimen.reviews_row_padding).toInt()
-            )
-        )
+        restaurantReviewsRecycler.layoutManager = layoutManager
+        restaurantReviewsRecycler.adapter = reviewsAdapter
     }
     private fun reviewLikeButtonClicked(review: Review){
         restaurantViewModel.reviewLiked(review)
