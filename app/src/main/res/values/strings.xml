@@ -20,6 +20,7 @@
     <string name="main_screen_suggested_text">Priporočene restavracije za vas</string>
     <string name="main_screen_suggested_2_text">Priporočene restavracije v bližini</string>
     <string name="main_screen_search_hint">Vpišite ime restavracije</string>
+    <string name="botton_app_info">Pojej &amp; Povej - 2020</string>
 
     <!-- search fragment-->
     <string-array name="filter_items">
