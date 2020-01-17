@@ -53,6 +53,9 @@ class SearchResultsViewHolder(val view: View): RecyclerView.ViewHolder(view){
         view.search_restaurant_address.text = restaurant.address
         view.search_restaurant_description.text = restaurant.description
         PicassoImageLoader.loadImage(restaurant.picture, view.search_restaurant_picture)
+        if(!restaurant.isOpenNow()){
+            Picasso.get().load(R.drawable.closed_circle).into(view.search_open_indicator)
+        }
         view.search_results_recycler_row_card_view.setOnClickListener {
             clickListener(restaurant)
             val extras = FragmentNavigatorExtras(

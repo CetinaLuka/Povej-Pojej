@@ -10,7 +10,7 @@ data class WorkingHours(
     var tue: DailyHours = DailyHours(LocalTime.parse("10:00", DateTimeFormatter.ofPattern("H:mm")), LocalTime.parse("21:00", DateTimeFormatter.ofPattern("H:mm"))),
     var wed: DailyHours = DailyHours(LocalTime.parse("10:00", DateTimeFormatter.ofPattern("H:mm")), LocalTime.parse("21:00", DateTimeFormatter.ofPattern("H:mm"))),
     var thu: DailyHours = DailyHours(LocalTime.parse("10:00", DateTimeFormatter.ofPattern("H:mm")), LocalTime.parse("21:00", DateTimeFormatter.ofPattern("H:mm"))),
-    var fri: DailyHours = DailyHours(LocalTime.parse("10:00", DateTimeFormatter.ofPattern("H:mm")), LocalTime.parse("21:00", DateTimeFormatter.ofPattern("H:mm"))),
+    var fri: DailyHours = DailyHours(LocalTime.parse("10:00", DateTimeFormatter.ofPattern("H:mm")), LocalTime.parse("20:00", DateTimeFormatter.ofPattern("H:mm"))),
     var sat: DailyHours = DailyHours(LocalTime.parse("10:00", DateTimeFormatter.ofPattern("H:mm")), LocalTime.parse("21:00", DateTimeFormatter.ofPattern("H:mm"))),
     var sun: DailyHours = DailyHours(LocalTime.parse("10:00", DateTimeFormatter.ofPattern("H:mm")), LocalTime.parse("21:00", DateTimeFormatter.ofPattern("H:mm")))
 ) {

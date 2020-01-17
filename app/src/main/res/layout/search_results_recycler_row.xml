@@ -64,12 +64,12 @@
                         android:textSize="18sp"
                         android:textStyle="bold"
                         android:typeface="normal"
-                        app:layout_constraintEnd_toStartOf="@+id/imageView7"
+                        app:layout_constraintEnd_toStartOf="@+id/search_open_indicator"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <ImageView
-                        android:id="@+id/imageView7"
+                        android:id="@+id/search_open_indicator"
                         android:layout_width="10dp"
                         android:layout_height="10dp"
                         android:layout_marginTop="8dp"

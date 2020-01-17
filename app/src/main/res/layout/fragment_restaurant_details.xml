@@ -119,6 +119,7 @@
             android:id="@+id/linearLayout3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:minHeight="172dp"
             android:orientation="horizontal"
             android:paddingStart="16dp"
             android:paddingTop="16dp"
@@ -192,11 +193,13 @@
                     android:id="@+id/details_restaurant_distance"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="4dp"
                     android:text="30m"
                     android:textColor="@color/lightText"
-                    android:textSize="14sp"
+                    android:textSize="18sp"
                     android:transitionName="restaurant_distance"
-                    app:layout_constraintBottom_toTopOf="@+id/details_restaurant_price"
+                    app:layout_constraintBottom_toBottomOf="@+id/restaurant_details_web"
                     app:layout_constraintEnd_toEndOf="parent" />
 
                 <me.zhanghai.android.materialratingbar.MaterialRatingBar
@@ -242,7 +245,7 @@
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:transitionName="restaurant_price"
-                    app:layout_constraintBottom_toBottomOf="@+id/details_restaurant_working_hours"
+                    app:layout_constraintBottom_toTopOf="@+id/details_restaurant_distance"
                     app:layout_constraintEnd_toStartOf="@+id/details_restaurant_currency" />
 
                 <TextView
@@ -295,35 +298,22 @@
                     android:text=""
                     app:icon="@drawable/ic_map_black_24dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/restaurant_details_navigate"
-                    style="@style/Widget.MaterialComponents.Button.Icon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:maxLength="5"
-                    android:text="1000m"
-                    app:icon="@drawable/ic_directions_black_24dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/restaurant_details_map"
-                    app:layout_constraintEnd_toStartOf="@+id/restaurant_details_web"
-                    app:layout_constraintStart_toEndOf="@+id/restaurant_details_map"
-                    app:layout_constraintTop_toTopOf="@+id/restaurant_details_map"
-                    app:layout_constraintVertical_bias="0.444" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/details_restaurant_working_hours" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/restaurant_details_web"
                     style="@style/Widget.MaterialComponents.Button.Icon"
                     android:layout_width="40dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
                     android:paddingLeft="8dp"
                     android:paddingRight="8dp"
                     android:text=""
                     app:icon="@drawable/ic_web_black_24dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/restaurant_details_navigate"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/restaurant_details_navigate"
-                    app:layout_constraintVertical_bias="0.444" />
+                    app:layout_constraintBottom_toBottomOf="@+id/restaurant_details_map"
+                    app:layout_constraintStart_toEndOf="@+id/restaurant_details_map"
+                    app:layout_constraintTop_toTopOf="@+id/restaurant_details_map" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
