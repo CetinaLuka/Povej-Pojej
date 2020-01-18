@@ -55,7 +55,7 @@ class SearchRestaurantsViewModel: ViewModel() {
         when(position){
             0 -> {
                 restaurants.value = restaurants.value!!.sortedWith(compareBy { it.name })
-                filterRestaurants.value = restaurants.value!!.sortedWith(compareBy { it.name })
+                filterRestaurants.value = filterRestaurants.value!!.sortedWith(compareBy { it.name })
                 Log.i("sort", "sorting by name")
             }
         }
