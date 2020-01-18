@@ -124,11 +124,15 @@
         app:layout_constraintTop_toBottomOf="@+id/search_header"-->
 
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/search_results_recycler"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:clipChildren="false" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/search_results_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:clipChildren="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/search_header" />
 
     <!--/androidx.swiperefreshlayout.widget.SwipeRefreshLayout-->
 
