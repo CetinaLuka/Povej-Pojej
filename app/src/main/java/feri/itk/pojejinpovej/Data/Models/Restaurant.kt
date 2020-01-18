@@ -12,7 +12,11 @@ data class Restaurant (
     var description: String = "",
     var reviews: ArrayList<Review> = ArrayList(),
     var workingHours: WorkingHours = WorkingHours(),
-    var distance: Int = 100
+    var distance: Int = 100,
+    var rateFood: Double = 0.0,
+    var rateOffer: Double = 0.0,
+    var rateService: Double = 0.0,
+    var rate: Double = 0.0
 ){
     fun findReview(review: Review): Review{
         for(r in reviews){

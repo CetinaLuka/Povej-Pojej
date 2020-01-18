@@ -81,12 +81,11 @@ class RestaurantDetails : Fragment() {
         details_restaurant_address.text = restaurant.address
         details_restaurant_description.text = restaurant.description
         details_restaurant_price.text = restaurant.price.toString()
-        //ATTENTION NOT LIVE DATA MUST BE FIXED
-        details_restaurant_food_rating_stars.rating = 4.3.toFloat()
-        details_restaurant_offer_rating_stars.rating = 2.3.toFloat()
-        details_restaurant_service_rating_stars.rating = 4.7.toFloat()
 
-
+        details_restaurant_food_rating_stars.rating = restaurant.rateFood.toFloat()
+        details_restaurant_offer_rating_stars.rating = restaurant.rateOffer.toFloat()
+        details_restaurant_service_rating_stars.rating = restaurant.rateService.toFloat()
+        details_restaurant_star_icon.rating = restaurant.rateService.toFloat()
 
         setupReviewsList(restaurant.reviews)
     }
