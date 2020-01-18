@@ -71,5 +71,9 @@
     <fragment
         android:id="@+id/restaurantLocationsMap"
         android:name="feri.itk.pojejinpovej.UI.Fragments.RestaurantLocationsMap"
-        android:label="RestaurantLocationsMap" />
+        android:label="RestaurantLocationsMap" >
+        <action
+            android:id="@+id/action_restaurantLocationsMap_to_restaurantDetails"
+            app:destination="@id/restaurantDetails" />
+    </fragment>
 </navigation>

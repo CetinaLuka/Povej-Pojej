@@ -1,6 +1,7 @@
 package feri.itk.pojejinpovej.UI.Fragments
 
 
+import android.location.Location
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -17,6 +18,10 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.transition.TransitionInflater
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.model.LatLng
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.mancj.materialsearchbar.MaterialSearchBar
 import feri.itk.pojejinpovej.UI.Adapters.SearchResultsAdapter
@@ -25,6 +30,8 @@ import feri.itk.pojejinpovej.Data.ViewModels.RestaurantDetailsViewModel
 import feri.itk.pojejinpovej.Data.ViewModels.SearchRestaurantsViewModel
 
 import feri.itk.pojejinpovej.R
+import feri.itk.pojejinpovej.Util.LocationUtil
+import feri.itk.pojejinpovej.Util.PermissionChecker
 import feri.itk.pojejinpovej.Util.RecyclerViewItemDecoration
 import kotlinx.android.synthetic.main.fragment_restaurant_locations_map.*
 import kotlinx.android.synthetic.main.fragment_search.*
@@ -38,6 +45,10 @@ class SearchFragment : Fragment(), MaterialSearchBar.OnSearchActionListener, Tex
     private lateinit var searchRestaurantsViewModel: SearchRestaurantsViewModel
     private lateinit var restaurantDetailsViewModel: RestaurantDetailsViewModel
 
+//    private lateinit var fusedLocationClient: FusedLocationProviderClient
+//    private lateinit var mCurrentLocation: Location
+//    private val LOCATION_PERMISSIONS_CODE = 99
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -50,6 +61,7 @@ class SearchFragment : Fragment(), MaterialSearchBar.OnSearchActionListener, Tex
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //fusedLocationClient = LocationServices.getFusedLocationProviderClient(context!!)
         searchRestaurantsViewModel = ViewModelProviders.of(this)[SearchRestaurantsViewModel::class.java]
         restaurantDetailsViewModel = ViewModelProviders.of(activity!!)[RestaurantDetailsViewModel::class.java]
 
@@ -63,10 +75,10 @@ class SearchFragment : Fragment(), MaterialSearchBar.OnSearchActionListener, Tex
 
         searchBar.setOnSearchActionListener(this)
 
+        setupSearchResultsList()
         restaurant_open_group.addOnButtonCheckedListener { _, _, isChecked ->
             searchRestaurantsViewModel.filterOpenRestaurants(isChecked, searchBar.text)
         }
-        setupSearchResultsList()
         filter_drop_down.setOnItemSelectedListener { _, position, _, _ ->
             filterSelected(position)
         }
@@ -76,6 +88,22 @@ class SearchFragment : Fragment(), MaterialSearchBar.OnSearchActionListener, Tex
         }
 
     }
+
+    /*private fun setupLocation(){
+        val allowed = PermissionChecker(LOCATION_PERMISSIONS_CODE).checkLocationPermissions(context!!)
+        Log.i("location", allowed.toString())
+        if(!allowed){
+            PermissionChecker(LOCATION_PERMISSIONS_CODE).requestLocationPermissions(activity!!, context!!)
+        }
+        else{
+            fusedLocationClient.lastLocation.addOnSuccessListener { location: Location? ->
+                mCurrentLocation = location!!
+                Log.i("location", "success $location")
+                searchRestaurantsViewModel.calculateDistances(location!!, context!!)
+
+            }
+        }
+    }*/
 
     private fun navigateToMapsFragment(){
         view?.findNavController()?.navigate(R.id.action_searchFragment_to_restaurantLocationsMap,
@@ -114,7 +142,6 @@ class SearchFragment : Fragment(), MaterialSearchBar.OnSearchActionListener, Tex
     private fun searchItemClicked(restaurant: Restaurant){
         restaurantDetailsViewModel.setRestaurant(restaurant)
         Log.i("viewmodel", "restaurant set")
-        Log.i("nav", view?.findNavController()?.currentDestination?.label.toString())
     }
 
     private fun initCityDropdown(){
@@ -139,13 +166,6 @@ class SearchFragment : Fragment(), MaterialSearchBar.OnSearchActionListener, Tex
     }
 
     override fun onSearchStateChanged(enabled: Boolean) {
-        if(!enabled){
-            Toast.makeText(context, "disabled", Toast.LENGTH_SHORT).show()
-            //searchBarBackButtonClicked()
-        }
-        else{
-            Toast.makeText(context, "enabled", Toast.LENGTH_SHORT).show()
-        }
     }
 
     override fun onSearchConfirmed(text: CharSequence?) {

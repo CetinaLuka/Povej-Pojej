@@ -11,7 +11,8 @@ data class Restaurant (
     var postCode: String = "",
     var description: String = "",
     var reviews: ArrayList<Review> = ArrayList(),
-    var workingHours: WorkingHours = WorkingHours()
+    var workingHours: WorkingHours = WorkingHours(),
+    var distance: Int = 100
 ){
     fun findReview(review: Review): Review{
         for(r in reviews){

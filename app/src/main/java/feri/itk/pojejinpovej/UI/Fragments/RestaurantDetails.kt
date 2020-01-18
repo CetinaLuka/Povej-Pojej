@@ -2,6 +2,7 @@ package feri.itk.pojejinpovej.UI.Fragments
 
 
 import android.content.DialogInterface
+import android.location.Location
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -13,6 +14,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.transition.TransitionInflater
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.squareup.picasso.Picasso
 import feri.itk.pojejinpovej.Data.Models.Restaurant
@@ -20,6 +23,7 @@ import feri.itk.pojejinpovej.Data.Models.Review
 import feri.itk.pojejinpovej.Data.ViewModels.RestaurantDetailsViewModel
 import feri.itk.pojejinpovej.R
 import feri.itk.pojejinpovej.UI.Adapters.RestaurantReviewsAdapter
+import feri.itk.pojejinpovej.Util.PicassoImageLoader
 import feri.itk.pojejinpovej.Util.RecyclerViewItemDecoration
 import kotlinx.android.synthetic.main.fragment_restaurant_details.*
 import kotlinx.android.synthetic.main.review_alert.view.*
@@ -33,6 +37,8 @@ import kotlin.collections.ArrayList
 class RestaurantDetails : Fragment() {
 
     lateinit var restaurantViewModel: RestaurantDetailsViewModel
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
+    private lateinit var mCurrentLocation: Location
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,6 +56,7 @@ class RestaurantDetails : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //initiating lateinit var restaurantViewModel which contains data for the restaurant
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(context!!)
         restaurantViewModel = ViewModelProviders.of(activity!!)[RestaurantDetailsViewModel::class.java]
         restaurantViewModel.getRestaurant().observe(this, Observer { restaurant ->
             loadRestaurantData(restaurant)
@@ -61,6 +68,9 @@ class RestaurantDetails : Fragment() {
         )
         addReviewFAB.setOnClickListener {
             openReviewAlert()
+        }
+        fusedLocationClient.lastLocation.addOnSuccessListener { location: Location? ->
+            mCurrentLocation = location!!
         }
 
     }
@@ -76,13 +86,16 @@ class RestaurantDetails : Fragment() {
         details_restaurant_offer_rating_stars.rating = 2.3.toFloat()
         details_restaurant_service_rating_stars.rating = 4.7.toFloat()
 
+
+
         setupReviewsList(restaurant.reviews)
     }
 
     private fun loadRestaurantPicture(picture: String) {
+        PicassoImageLoader.loadImage(picture, details_restaurant_picture)
+        val picasso = Picasso.get()
         if(picture.isEmpty()){
-            Picasso
-                .get()
+            picasso
                 .load(R.drawable.app_logo_transparent)
                 .fit()
                 .centerCrop()
@@ -90,20 +103,23 @@ class RestaurantDetails : Fragment() {
             startPostponedEnterTransition()
         }
         else{
-            Picasso
-                .get()
+            picasso
                 .load(picture)
                 .fit()
                 .centerCrop()
                 .into(details_restaurant_picture, object: com.squareup.picasso.Callback{
                     override fun onSuccess() {
-                        //transition is resumed once picasso has loaded the picture
                         startPostponedEnterTransition()
                     }
 
                     override fun onError(e: Exception?) {
-                        Toast.makeText(context, R.string.error_loading_restaurant_picture, Toast.LENGTH_SHORT).show()
                         Log.i("picasso", e.toString())
+                        picasso
+                            .load(R.drawable.app_logo_transparent)
+                            .fit()
+                            .centerCrop()
+                            .into(details_restaurant_picture)
+                        startPostponedEnterTransition()
                     }
 
                 })
