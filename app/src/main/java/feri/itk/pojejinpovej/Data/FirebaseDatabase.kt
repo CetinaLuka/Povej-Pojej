@@ -1,5 +1,7 @@
 package feri.itk.pojejinpovej.Data
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.FirebaseAuth
@@ -11,16 +13,20 @@ import com.google.firebase.database.ValueEventListener
 import feri.itk.pojejinpovej.Data.Models.Restaurant
 
 
-object FirebaseDatabase {
+object FirebaseDatabase{
+    lateinit var ctx: Context
     lateinit var firebase: String
     private lateinit var database: DatabaseReference
     private lateinit var firebaseAuth: FirebaseAuth
+    lateinit var sharedPref: SharedPreferences
 
     init {
         Log.i("FirebaseDatabase", "initiating firebase database")
 
         database = FirebaseDatabase.getInstance().reference
         firebaseAuth = FirebaseAuth.getInstance()
+
+
 
     }
 
@@ -45,8 +51,12 @@ object FirebaseDatabase {
                     r.rateService = ds.child("rateService").value.toString().toDouble()
                     //calculating rate for person
                     if(firebaseAuth.currentUser!=null) {
-                        // TO DO - DIFFERENT CALCULATION DEPENDING ON USER SETTINGS
-                        r.rate = (r.rateFood+r.rateOffer+r.rateService)/5
+                        sharedPref = ctx.getSharedPreferences("pref", Context.MODE_PRIVATE)
+                        var  sFood = sharedPref.getFloat("sliderFood", Float.MAX_VALUE)
+                        var  sOffer = sharedPref.getFloat("sliderOffer", Float.MAX_VALUE)
+                        var  sService = sharedPref.getFloat("sliderService", Float.MAX_VALUE)
+                        // different calculations depending on user settings
+                        r.rate = (r.rateFood*(sFood/3)+r.rateOffer*(sOffer/3)+r.rateService*(sService/3))/3
                     }
                     else{
                         r.rate = (r.rateFood+r.rateOffer+r.rateService)/3
