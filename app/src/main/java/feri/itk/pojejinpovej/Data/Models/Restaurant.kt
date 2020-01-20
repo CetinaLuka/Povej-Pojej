@@ -16,7 +16,8 @@ data class Restaurant (
     var rateFood: Double = 0.0,
     var rateOffer: Double = 0.0,
     var rateService: Double = 0.0,
-    var rate: Double = 0.0
+    var rate: Double = 0.0,
+    var website: String = ""
 ){
     fun findReview(review: Review): Review{
         for(r in reviews){

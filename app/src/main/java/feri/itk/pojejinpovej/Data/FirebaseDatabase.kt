@@ -45,6 +45,7 @@ object FirebaseDatabase{
                     r.address = ds.child("address").value.toString()
                     r.postCode = ds.child("postCode").value.toString()
                     r.description = ds.child("description").value.toString()
+                    r.website = ds.child("website").value.toString()
                     //rates
                     r.rateFood = ds.child("rateFood").value.toString().toDouble()
                     r.rateOffer = ds.child("rateOffer").value.toString().toDouble()
@@ -92,6 +93,7 @@ object FirebaseDatabase{
                     r.address = ds.child("address").value.toString()
                     r.postCode = ds.child("postCode").value.toString()
                     r.description = ds.child("description").value.toString()
+                    r.website = ds.child("website").value.toString()
                     //rates
                     r.rateFood = ds.child("rateFood").value.toString().toDouble()
                     r.rateOffer = ds.child("rateOffer").value.toString().toDouble()
@@ -143,6 +145,7 @@ object FirebaseDatabase{
                     r.address = ds.child("address").value.toString()
                     r.postCode = ds.child("postCode").value.toString()
                     r.description = ds.child("description").value.toString()
+                    r.website = ds.child("website").value.toString()
                     //rates
                     r.rateFood = ds.child("rateFood").value.toString().toDouble()
                     r.rateOffer = ds.child("rateOffer").value.toString().toDouble()

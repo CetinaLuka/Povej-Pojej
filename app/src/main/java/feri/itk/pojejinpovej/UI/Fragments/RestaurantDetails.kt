@@ -1,8 +1,11 @@
 package feri.itk.pojejinpovej.UI.Fragments
 
 
+import android.content.Context
 import android.content.DialogInterface
+import android.content.Intent
 import android.location.Location
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -76,6 +79,12 @@ class RestaurantDetails : Fragment() {
 
     }
 
+    fun openWindow(urls: String) {
+        val uris = Uri.parse(urls)
+        val intents = Intent(Intent.ACTION_VIEW, uris)
+        requireActivity().startActivity(intents)
+    }
+
     private fun loadRestaurantData(restaurant: Restaurant){
         loadRestaurantPicture(restaurant.picture)
         details_restaurant_name.text = restaurant.name
@@ -84,7 +93,7 @@ class RestaurantDetails : Fragment() {
         details_restaurant_price.text = restaurant.price.toString()
         details_restaurant_rating.text = restaurant.rate.toString()
         details_restaurant_working_hours.text = restaurant.workingHours.workingHoursToday()
-        details_restaurant_distance.text = restaurant.distance.toString()
+        details_restaurant_distance.text = restaurant.distance.toString()+"m"
 
         details_restaurant_food_rating_stars.rating = restaurant.rateFood.toFloat()
         details_restaurant_offer_rating_stars.rating = restaurant.rateOffer.toFloat()
@@ -100,6 +109,11 @@ class RestaurantDetails : Fragment() {
         }
 
         setupReviewsList(restaurant.reviews)
+
+
+        restaurant_details_web.setOnClickListener{
+            openWindow(restaurant.website)
+        }
     }
 
     private fun loadRestaurantPicture(picture: String) {
