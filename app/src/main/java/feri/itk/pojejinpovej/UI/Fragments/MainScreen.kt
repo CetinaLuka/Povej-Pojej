@@ -2,12 +2,16 @@ package feri.itk.pojejinpovej.UI.Fragments
 
 
 import android.content.Context
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.getSystemService
 import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -56,6 +60,9 @@ class MainScreen : Fragment() {
             main_screen_account_button.visibility=View.INVISIBLE
             main_screen_user_profile_button.visibility=View.VISIBLE
         }
+
+        if(!isNetworkAvailable(activity!!.applicationContext))
+            Toast.makeText(activity,"Nimate internetne povezave", Toast.LENGTH_LONG).show()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -87,7 +94,11 @@ class MainScreen : Fragment() {
         }
     }
 
-
+    private fun isNetworkAvailable(ctx: Context): Boolean {
+        val connectivityManager = ctx.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetworkInfo = connectivityManager.activeNetworkInfo
+        return activeNetworkInfo != null && activeNetworkInfo.isConnectedOrConnecting
+    }
 
     //function that specifyes shared elements between main and login screen and starts navigation to login screen
     private fun openLogin(){

@@ -10,6 +10,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.fragment.app.FragmentTransaction
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import com.facebook.login.LoginManager
@@ -17,6 +20,7 @@ import com.google.android.material.slider.Slider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.ktx.Firebase
 import feri.itk.pojejinpovej.Data.FirebaseDatabase
+import feri.itk.pojejinpovej.Data.ViewModels.SuggestedRestaurantsViewModel
 import feri.itk.pojejinpovej.R
 import kotlinx.android.synthetic.main.fragment_search.*
 import kotlinx.android.synthetic.main.fragment_user_profile.*

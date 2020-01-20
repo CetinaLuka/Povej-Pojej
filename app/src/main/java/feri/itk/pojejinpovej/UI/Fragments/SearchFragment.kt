@@ -1,7 +1,9 @@
 package feri.itk.pojejinpovej.UI.Fragments
 
 
+import android.content.Context
 import android.location.Location
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -87,6 +89,8 @@ class SearchFragment : Fragment(), MaterialSearchBar.OnSearchActionListener, Tex
             navigateToMapsFragment()
         }
 
+        if(!isNetworkAvailable(activity!!.applicationContext))
+            Toast.makeText(activity,"Nimate internetne povezave", Toast.LENGTH_LONG).show()
     }
 
     /*private fun setupLocation(){
@@ -182,6 +186,12 @@ class SearchFragment : Fragment(), MaterialSearchBar.OnSearchActionListener, Tex
 
     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
         searchRestaurantsViewModel.filterRestaurants(searchBar.text)
+    }
+
+    private fun isNetworkAvailable(ctx: Context): Boolean {
+        val connectivityManager = ctx.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetworkInfo = connectivityManager.activeNetworkInfo
+        return activeNetworkInfo != null && activeNetworkInfo.isConnectedOrConnecting
     }
 
 }
