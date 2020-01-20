@@ -36,7 +36,7 @@ class UserProfile : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        FirebaseDatabase.ctx = activity!!.applicationContext
+
         //logout
         username.setText(FirebaseAuth.getInstance().currentUser!!.displayName)
         logout_button.setOnClickListener {

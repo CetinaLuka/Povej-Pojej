@@ -18,6 +18,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.yarolegovich.discretescrollview.DiscreteScrollView
 import com.yarolegovich.discretescrollview.transform.Pivot
 import com.yarolegovich.discretescrollview.transform.ScaleTransformer
+import feri.itk.pojejinpovej.Data.FirebaseDatabase
 import feri.itk.pojejinpovej.R
 import feri.itk.pojejinpovej.UI.Adapters.SuggestionsRecyclerAdapter
 import feri.itk.pojejinpovej.Data.Models.Restaurant
@@ -59,6 +60,8 @@ class MainScreen : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        FirebaseDatabase.ctx = activity!!.applicationContext
+        
         restaurantDetailsViewModel = ViewModelProviders.of(activity!!)[RestaurantDetailsViewModel::class.java]
         suggestedRestaurantsViewModel = ViewModelProviders.of(activity!!)[SuggestedRestaurantsViewModel::class.java]
 

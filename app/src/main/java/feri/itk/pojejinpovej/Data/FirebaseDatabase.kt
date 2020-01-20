@@ -11,6 +11,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import feri.itk.pojejinpovej.Data.Models.Restaurant
+import kotlin.math.round
 
 
 object FirebaseDatabase{
@@ -61,6 +62,7 @@ object FirebaseDatabase{
                     else{
                         r.rate = (r.rateFood+r.rateOffer+r.rateService)/3
                     }
+                    r.rate=round(r.rate*10)/10
                     listek.add(r)
                     //Log.d("TAG", restaurantId)
                 }

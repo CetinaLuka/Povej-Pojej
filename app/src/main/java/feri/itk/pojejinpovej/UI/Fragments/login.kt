@@ -148,7 +148,6 @@ class login : Fragment() {
             }
             catch(e: ApiException){
                 e.printStackTrace()
-                //Toast.makeText(activity,"Google Sign In failed miserably",Toast.LENGTH_SHORT).show()
             }
         }
         //Facebook Login
