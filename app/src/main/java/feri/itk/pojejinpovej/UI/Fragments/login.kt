@@ -88,7 +88,6 @@ class login : Fragment() {
         setupUI()
 
         //Facebook
-
         login_button.setOnClickListener {
             LoginManager.getInstance().setLoginBehavior(LoginBehavior.WEB_ONLY)
             LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("email", "public_profile"))

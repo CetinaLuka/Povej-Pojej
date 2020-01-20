@@ -8,6 +8,7 @@
     <string name="login_description">Zaradi preprečevanja zlorab sistema ocenjevanja aplikacij se v aplikacijo prijavite s svojim Google računom</string>
     <string name="login_button_text">PRIJAVA</string>
     <string name="logout_button_text">ODJAVA</string>
+    <string name="com_facebook_loginview_log_out_button">Odjavi se</string>
 
     <!-- User profile fragment -->
     <string name="user_profile_title">Nastavitve</string>
