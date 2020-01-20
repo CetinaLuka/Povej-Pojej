@@ -12,7 +12,7 @@ data class Restaurant (
     var description: String = "",
     var reviews: ArrayList<Review> = ArrayList(),
     var workingHours: WorkingHours = WorkingHours(),
-    var distance: Int = 100,
+    var distance: Int = (0..990).random(),
     var rateFood: Double = 0.0,
     var rateOffer: Double = 0.0,
     var rateService: Double = 0.0,

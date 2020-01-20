@@ -52,7 +52,7 @@ class SearchResultsViewHolder(val view: View): RecyclerView.ViewHolder(view){
         view.search_restaurant_price.text = restaurant.price.toString()
         view.search_restaurant_address.text = restaurant.address
         view.search_restaurant_description.text = restaurant.description
-        view.search_restaurant_distance.text = restaurant.distance.toString()
+        view.search_restaurant_distance.text = restaurant.distance.toString()+"m"
         PicassoImageLoader.loadImage(restaurant.picture, view.search_restaurant_picture)
         if(!restaurant.isOpenNow()){
             Picasso.get().load(R.drawable.closed_circle).into(view.search_open_indicator)
