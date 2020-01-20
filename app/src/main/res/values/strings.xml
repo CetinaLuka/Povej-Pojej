@@ -40,6 +40,7 @@
     <string name="cancel">Prekini</string>
     <string name="confirm">Potrdi</string>
     <string name="review_sent">Vaša ocena je bila oddana</string>
+    <string name="picture_loading_error">Prišlo je do napake pri nalaganju slike. Preverite ali imate povezavo s spletom.</string>
 
 
     <!-- general error messages -->
