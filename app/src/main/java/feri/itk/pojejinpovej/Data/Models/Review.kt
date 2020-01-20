@@ -10,7 +10,7 @@ data class Review(
     var foodRating: Double = 0.0,
     var offerRating: Double = 0.0,
     var serviceRating: Double = 0.0,
-    val date: LocalDate = LocalDate.of((2018..2019).random(), (1..12).random(), (0..28).random())
+    val date: LocalDate = LocalDate.of((2018..2019).random(), (1..12).random(), (1..28).random())
 
 ) {
     var reviewRating: Int = 0

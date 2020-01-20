@@ -163,12 +163,12 @@
                     android:textSize="24sp"
                     android:textStyle="bold"
                     android:transitionName="restaurant_name"
-                    app:layout_constraintEnd_toStartOf="@+id/imageView4"
+                    app:layout_constraintEnd_toStartOf="@+id/details_restaurant_open_indicator"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
-                    android:id="@+id/imageView4"
+                    android:id="@+id/details_restaurant_open_indicator"
                     android:layout_width="10dp"
                     android:layout_height="10dp"
                     android:layout_marginTop="8dp"
@@ -176,6 +176,15 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/open_circle" />
+                <ImageView
+                    android:id="@+id/details_restaurant_closed_indicator"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/closed_circle" />
 
                 <TextView
                     android:id="@+id/details_restaurant_address"

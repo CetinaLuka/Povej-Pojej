@@ -49,6 +49,7 @@ object FirebaseDatabase{
                     r.rateFood = ds.child("rateFood").value.toString().toDouble()
                     r.rateOffer = ds.child("rateOffer").value.toString().toDouble()
                     r.rateService = ds.child("rateService").value.toString().toDouble()
+                    r.reviews = RestaurantRepository.reviews
                     //calculating rate for person
                     if(firebaseAuth.currentUser!=null) {
                         sharedPref = ctx.getSharedPreferences("pref", Context.MODE_PRIVATE)
@@ -95,6 +96,7 @@ object FirebaseDatabase{
                     r.rateFood = ds.child("rateFood").value.toString().toDouble()
                     r.rateOffer = ds.child("rateOffer").value.toString().toDouble()
                     r.rateService = ds.child("rateService").value.toString().toDouble()
+                    r.reviews = RestaurantRepository.reviews
                     //calculating rate for person
                     if(firebaseAuth.currentUser!=null) {
                         sharedPref = ctx.getSharedPreferences("pref", Context.MODE_PRIVATE)
@@ -145,6 +147,7 @@ object FirebaseDatabase{
                     r.rateFood = ds.child("rateFood").value.toString().toDouble()
                     r.rateOffer = ds.child("rateOffer").value.toString().toDouble()
                     r.rateService = ds.child("rateService").value.toString().toDouble()
+                    r.reviews = RestaurantRepository.reviews
                     //calculating rate for person
                     if(firebaseAuth.currentUser!=null) {
                         sharedPref = ctx.getSharedPreferences("pref", Context.MODE_PRIVATE)

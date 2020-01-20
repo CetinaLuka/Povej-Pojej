@@ -44,6 +44,7 @@
                     android:layout_weight="60"
                     app:srcCompat="@drawable/app_logo_transparent" />
 
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -76,6 +77,14 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:srcCompat="@drawable/open_circle" />
+                    <ImageView
+                        android:id="@+id/search_closed_indicator"
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/closed_circle" />
 
                     <TextView
                         android:id="@+id/search_restaurant_address"

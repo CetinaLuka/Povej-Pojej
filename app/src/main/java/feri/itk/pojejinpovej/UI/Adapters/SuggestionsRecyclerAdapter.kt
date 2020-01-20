@@ -1,5 +1,6 @@
 package feri.itk.pojejinpovej.UI.Adapters
 
+import android.opengl.Visibility
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,7 @@ import feri.itk.pojejinpovej.Data.Models.Restaurant
 import feri.itk.pojejinpovej.R
 import feri.itk.pojejinpovej.Util.PicassoImageLoader
 import kotlinx.android.synthetic.main.fragment_main_screen.*
+import kotlinx.android.synthetic.main.fragment_restaurant_details.*
 import kotlinx.android.synthetic.main.suggestion_recycler_row.view.*
 
 class SuggestionsRecyclerAdapter(list: List<Restaurant>, val clickListener: (Restaurant) -> Unit): RecyclerView.Adapter<SuggestionsViewHolder>(){
@@ -39,6 +41,14 @@ class SuggestionsViewHolder(val view: View): RecyclerView.ViewHolder(view){
         view.suggestion_restaurant_description.text = restaurant.description
         view.rating.text = restaurant.rate.toString()
         PicassoImageLoader.loadImage(restaurant.picture, view.suggestion_restaurant_picture)
+        if(!restaurant.isOpenNow()){
+            view.suggestion_restaurant_open_status.visibility = View.INVISIBLE
+            view.suggestion_restaurant_closed_status.visibility = View.VISIBLE
+        }
+        else{
+            view.suggestion_restaurant_open_status.visibility = View.VISIBLE
+            view.suggestion_restaurant_closed_status.visibility = View.INVISIBLE
+        }
 
         view.suggestions_card_view.setOnClickListener {
             clickListener(restaurant)

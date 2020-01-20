@@ -59,13 +59,23 @@
                     android:layout_width="10dp"
                     android:layout_height="10dp"
                     android:layout_marginTop="8dp"
-                    android:tint="@color/restaurantOpen"
                     card_view:layout_constraintBottom_toBottomOf="parent"
                     card_view:layout_constraintEnd_toEndOf="parent"
                     card_view:layout_constraintStart_toStartOf="parent"
                     card_view:layout_constraintTop_toTopOf="parent"
                     card_view:layout_constraintVertical_bias="1.0"
                     card_view:srcCompat="@drawable/open_circle" />
+                <ImageView
+                    android:id="@+id/suggestion_restaurant_closed_status"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_marginTop="8dp"
+                    card_view:layout_constraintBottom_toBottomOf="parent"
+                    card_view:layout_constraintEnd_toEndOf="parent"
+                    card_view:layout_constraintStart_toStartOf="parent"
+                    card_view:layout_constraintTop_toTopOf="parent"
+                    card_view:layout_constraintVertical_bias="1.0"
+                    card_view:srcCompat="@drawable/closed_circle" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>

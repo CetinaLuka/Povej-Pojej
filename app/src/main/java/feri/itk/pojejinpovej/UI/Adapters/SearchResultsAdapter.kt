@@ -53,9 +53,15 @@ class SearchResultsViewHolder(val view: View): RecyclerView.ViewHolder(view){
         view.search_restaurant_description.text = restaurant.description
         view.search_restaurant_distance.text = restaurant.distance.toString()+"m"
         view.search_restaurant_rating.text = restaurant.rate.toString()
+        view.search_restaurant_working_hours.text = restaurant.workingHours.workingHoursToday()
         PicassoImageLoader.loadImage(restaurant.picture, view.search_restaurant_picture)
         if(!restaurant.isOpenNow()){
-            Picasso.get().load(R.drawable.closed_circle).into(view.search_open_indicator)
+            view.search_open_indicator.visibility = View.INVISIBLE
+            view.search_closed_indicator.visibility = View.VISIBLE
+        }
+        else{
+            view.search_open_indicator.visibility = View.VISIBLE
+            view.search_closed_indicator.visibility = View.INVISIBLE
         }
         view.search_results_recycler_row_card_view.setOnClickListener {
             clickListener(restaurant)

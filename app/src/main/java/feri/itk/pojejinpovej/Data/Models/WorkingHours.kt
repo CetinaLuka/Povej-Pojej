@@ -16,17 +16,12 @@ data class WorkingHours(
 ) {
     fun workingHoursToday(): String{
         val todaysHours = returnTodaysHours()
-        return todaysHours.opens.toString()+"-"+todaysHours.closes.toString()
+        return todaysHours.opens.toString()+" - "+todaysHours.closes.toString()
     }
     fun isOpenNow(): Boolean{
         val todaysHours = returnTodaysHours()
         val currentTime = LocalTime.now()
-        if((currentTime >= todaysHours.opens && currentTime < todaysHours.closes)){
-            return true
-        }
-        else{
-            return true
-        }
+        return (currentTime.isAfter(todaysHours.opens) && currentTime.isBefore(todaysHours.closes))
     }
     fun returnTodaysHours(): DailyHours{
         val dayOfTheWeek = Calendar.getInstance().get(Calendar.DAY_OF_WEEK)

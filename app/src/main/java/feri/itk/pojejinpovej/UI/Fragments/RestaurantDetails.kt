@@ -27,6 +27,7 @@ import feri.itk.pojejinpovej.Util.PicassoImageLoader
 import feri.itk.pojejinpovej.Util.RecyclerViewItemDecoration
 import kotlinx.android.synthetic.main.fragment_restaurant_details.*
 import kotlinx.android.synthetic.main.review_alert.view.*
+import kotlinx.android.synthetic.main.suggestion_recycler_row.view.*
 import java.lang.Exception
 import java.util.*
 import kotlin.collections.ArrayList
@@ -82,11 +83,21 @@ class RestaurantDetails : Fragment() {
         details_restaurant_description.text = restaurant.description
         details_restaurant_price.text = restaurant.price.toString()
         details_restaurant_rating.text = restaurant.rate.toString()
+        details_restaurant_working_hours.text = restaurant.workingHours.workingHoursToday()
+        details_restaurant_distance.text = restaurant.distance.toString()
 
         details_restaurant_food_rating_stars.rating = restaurant.rateFood.toFloat()
         details_restaurant_offer_rating_stars.rating = restaurant.rateOffer.toFloat()
         details_restaurant_service_rating_stars.rating = restaurant.rateService.toFloat()
         details_restaurant_star_icon.rating = restaurant.rate.toFloat()
+        if(!restaurant.isOpenNow()){
+            details_restaurant_open_indicator.visibility = View.INVISIBLE
+            details_restaurant_closed_indicator.visibility = View.VISIBLE
+        }
+        else{
+            details_restaurant_open_indicator.visibility = View.VISIBLE
+            details_restaurant_closed_indicator.visibility = View.INVISIBLE
+        }
 
         setupReviewsList(restaurant.reviews)
     }

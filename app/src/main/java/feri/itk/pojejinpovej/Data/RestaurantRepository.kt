@@ -6,7 +6,7 @@ import feri.itk.pojejinpovej.Data.Models.Restaurant
 import feri.itk.pojejinpovej.Data.Models.Review
 
 object RestaurantRepository {
-    private var reviews = arrayListOf(
+    var reviews = arrayListOf(
         Review("0","Janez Novak","Zelo slaba kvaliteta hrane. Vse je bilo mrzlo in nezačinjeno. Kljub slabi hrani je ponudba zelo dobra in raznolika, natakarji pa so prijazni in ustrežljivi. Vrnem se ko menjajo kuharja.", 1.2, 3.3, 4.5),
         Review("1","Maja Čeh","Hrana je bila zelo dobra, jaz sem jedela lososa, fant pa postrv. Sveže sestavina in odlična predstavitev na krožniku. Tudi postrežba je dobra, le ponudba je precej omejena", 4.2, 3.3, 4.5),
         Review("2","Marko Janežič","Dobra restavracija, hitra postrežba in slastna hrana. Še pridemo.", 4.3, 4.0, 4.7),
