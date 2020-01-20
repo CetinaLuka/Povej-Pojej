@@ -69,9 +69,9 @@ class RestaurantDetails : Fragment() {
         addReviewFAB.setOnClickListener {
             openReviewAlert()
         }
-        fusedLocationClient.lastLocation.addOnSuccessListener { location: Location? ->
+        /*fusedLocationClient.lastLocation.addOnSuccessListener { location: Location? ->
             mCurrentLocation = location!!
-        }
+        }*/
 
     }
 
@@ -92,38 +92,44 @@ class RestaurantDetails : Fragment() {
     }
 
     private fun loadRestaurantPicture(picture: String) {
-        PicassoImageLoader.loadImage(picture, details_restaurant_picture)
-        val picasso = Picasso.get()
-        if(picture.isEmpty()){
-            picasso
-                .load(R.drawable.app_logo_transparent)
-                .fit()
-                .centerCrop()
-                .into(details_restaurant_picture)
-            startPostponedEnterTransition()
-        }
-        else{
-            picasso
-                .load(picture)
-                .fit()
-                .centerCrop()
-                .into(details_restaurant_picture, object: com.squareup.picasso.Callback{
-                    override fun onSuccess() {
-                        startPostponedEnterTransition()
-                    }
+        try{
+            val picasso = Picasso.get()
+            if(picture.isEmpty()){
+                picasso
+                    .load(R.drawable.app_logo_transparent)
+                    .fit()
+                    .centerCrop()
+                    .into(details_restaurant_picture)
+                startPostponedEnterTransition()
+            }
+            else{
+                picasso
+                    .load(picture)
+                    .fit()
+                    .centerCrop()
+                    .into(details_restaurant_picture, object: com.squareup.picasso.Callback{
+                        override fun onSuccess() {
+                            startPostponedEnterTransition()
+                        }
 
-                    override fun onError(e: Exception?) {
-                        Log.i("picasso", e.toString())
-                        picasso
-                            .load(R.drawable.app_logo_transparent)
-                            .fit()
-                            .centerCrop()
-                            .into(details_restaurant_picture)
-                        startPostponedEnterTransition()
-                    }
+                        override fun onError(e: Exception?) {
+                            Toast.makeText(context, R.string.picture_loading_error, Toast.LENGTH_SHORT).show()
+                            Log.i("picasso", e.toString())
+                            picasso
+                                .load(R.drawable.app_logo_transparent)
+                                .fit()
+                                .centerCrop()
+                                .into(details_restaurant_picture)
+                            startPostponedEnterTransition()
+                        }
 
-                })
+                    })
+            }
         }
+        catch(e: Exception){
+            Toast.makeText(context, R.string.picture_loading_error, Toast.LENGTH_SHORT).show()
+        }
+
     }
     private fun setupReviewsList(reviews: ArrayList<Review>) {
         val reviewsAdapter =
