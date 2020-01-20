@@ -11,7 +11,6 @@ import feri.itk.pojejinpovej.Data.RestaurantRepository
 class SuggestedRestaurantsViewModel: ViewModel() {
     private lateinit var suggestedRestaurants: MutableLiveData<List<Restaurant>>
     private lateinit var nearbyRestaurants: MutableLiveData<List<Restaurant>>
-    private val restaurantRepository = RestaurantRepository
     private val firebaseDatabase = FirebaseDatabase
 
     fun getSuggestedRestaurants(): MutableLiveData<List<Restaurant>> {

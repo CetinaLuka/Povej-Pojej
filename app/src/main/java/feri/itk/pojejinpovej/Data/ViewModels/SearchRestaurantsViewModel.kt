@@ -51,33 +51,27 @@ class SearchRestaurantsViewModel: ViewModel() {
         filterRestaurants.value = filteredRestaurants
     }
     fun sortRestaurants(position: Int){
-        Log.i("sort", position.toString())
         when(position){
             0 -> {
                 restaurants.value = restaurants.value!!.sortedWith(compareBy { it.name })
                 filterRestaurants.value = filterRestaurants.value!!.sortedWith(compareBy { it.name })
-                Log.i("sort", "sorting by name")
             }
             1 -> {
                 restaurants.value = restaurants.value!!.sortedWith(compareBy { it.rate }).reversed()
                 filterRestaurants.value = filterRestaurants.value!!.sortedWith(compareBy { it.rate }).reversed()
-                Log.i("sort", "sorting by distance")
             }
             2 -> {
                 restaurants.value = restaurants.value!!.sortedWith(compareBy { it.distance })
                 filterRestaurants.value = filterRestaurants.value!!.sortedWith(compareBy { it.distance })
-                Log.i("sort", "sorting by distance")
             }
             3 -> {
                 restaurants.value = restaurants.value!!.sortedWith(compareBy { it.price })
                 filterRestaurants.value = filterRestaurants.value!!.sortedWith(compareBy { it.price })
-                Log.i("sort", "sorting by distance")
             }
 
         }
     }
     fun filterOpenRestaurants(open: Boolean, filter: String){
-        Log.i("open", "$open ($filter)")
         var filteredRestaurants = ArrayList<Restaurant>()
         if(open){
             for(r in filterRestaurants.value!!){
@@ -88,7 +82,6 @@ class SearchRestaurantsViewModel: ViewModel() {
             filterRestaurants.value = filteredRestaurants
         }
         else{
-            Log.i("open", "untoggle")
             filteredRestaurants.addAll(restaurants.value!!)
             filterRestaurants.value = filteredRestaurants
             filterRestaurants(filter)

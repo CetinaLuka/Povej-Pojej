@@ -145,7 +145,6 @@ class SearchFragment : Fragment(), MaterialSearchBar.OnSearchActionListener, Tex
 
     private fun searchItemClicked(restaurant: Restaurant){
         restaurantDetailsViewModel.setRestaurant(restaurant)
-        Log.i("viewmodel", "restaurant set")
     }
 
     private fun initCityDropdown(){

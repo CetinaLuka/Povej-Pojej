@@ -6,18 +6,18 @@ import feri.itk.pojejinpovej.Data.Models.Restaurant
 import feri.itk.pojejinpovej.Data.Models.Review
 
 object RestaurantRepository {
-    private var reviews = arrayListOf(
-        Review("0","Janez Novak","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."),
-        Review("1","Mirko Čeh","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."),
-        Review("2","Marko Janežič","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."),
-        Review("3","Jaka Novak","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."),
-        Review("4","Darko Glušič","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."),
-        Review("5","Janez Kranjec","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."),
-        Review("6","Brigita Šuštarič","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."),
-        Review("7","Janez Novak","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."),
-        Review("8","Janez Novak","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."),
-        Review("9","Janez Novak","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."),
-        Review("10","Janez Novak","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.")
+    var reviews = arrayListOf(
+        Review("0","Janez Novak","Zelo slaba kvaliteta hrane. Vse je bilo mrzlo in nezačinjeno. Kljub slabi hrani je ponudba zelo dobra in raznolika, natakarji pa so prijazni in ustrežljivi. Vrnem se ko menjajo kuharja.", 1.2, 3.3, 4.5),
+        Review("1","Maja Čeh","Hrana je bila zelo dobra, jaz sem jedela lososa, fant pa postrv. Sveže sestavina in odlična predstavitev na krožniku. Tudi postrežba je dobra, le ponudba je precej omejena", 4.2, 3.3, 4.5),
+        Review("2","Marko Janežič","Dobra restavracija, hitra postrežba in slastna hrana. Še pridemo.", 4.3, 4.0, 4.7),
+        Review("3","Jaka Novak","Prvič sem jedel v tej restavraciji in verjetno tudi zadnjič. Hrana je bila podpovprečna, natakarji pa neprijazni in počasni.", 2.8, 3.1, 1.5),
+        Review("4","Darko Glušič","Zalo zadovoljen s hrano in postrežbo. Nabor jedi je zelo omejen vendar se spremenijo vsk teden.", 4.9, 2.8, 4.2),
+        Review("5","Marja Kranjec","Ni slabo ni pa preveč dobro. Povprečna restavracija s klasično hrano. Tudi cena je temu primerna", 3.2, 3.9, 3.5),
+        Review("6","Brigita Šuštarič","Sem hodimo jest že odkar se je restavracija odprla. Nikoli še nisem bila razočarana, si pa želim da bi imeli kakšno dnevno ali tedensko ponudbo.", 5.0, 2.3, 4.5),
+        Review("7","Eva Adamič","Nad hrano nimam pritožb, natakarji pa znajo biti neprijazni.", 4.8, 3.3, 3.5),
+        Review("8","Gregor Kepler","Same pohvale, za hrano vedno sveže in okusno. Natakrji so prijazni in ustrežljivi vendar jih je premalo in ponavadi traja da uspejo vse postreči.", 4.1, 4.6, 3.5),
+        Review("9","Herman Potočnik","Dobro se in še boljše pije. Natakarica je zelo prijazna in tudi proporoči jedi. Vse pohvale tudi kuharju za izvrstno hrano.", 4.5, 3.3, 4.5),
+        Review("10","Nina Hubler","Velika izbira hrane, vendar pa postrežba in kvaliteta hrane razočarata.", 3.2, 4.3, 3.5)
     )
     private var restaurants = arrayListOf(
         Restaurant("Baščaršija", "https://dobregostilne.si/image/restavracija-bascarsija-n-750-750-922.jpg", 3.25, "Poštna ulica 8", "2000", "Restaurant with popular traditional Bosnian kitchen and good location. Whatever you choose to eat you cant miss. Prices are not so bad if you are a tourist. Ambient is relaxing, you just have to find a free table,because it's busy.", reviews),

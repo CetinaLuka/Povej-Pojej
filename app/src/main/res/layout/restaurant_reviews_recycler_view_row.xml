@@ -45,10 +45,11 @@
             style="@style/Widget.MaterialRatingBar.RatingBar"
             android:layout_width="100dp"
             android:layout_height="20dp"
+            android:layout_marginTop="4dp"
             android:isIndicator="true"
             android:transitionName="restaurant_star_icon"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/review" />
+            app:layout_constraintTop_toBottomOf="@+id/reviewer_name" />
 
         <TextView
             android:id="@+id/reviewer_name"
@@ -77,28 +78,29 @@
             android:id="@+id/review"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
             android:ellipsize="end"
             android:justificationMode="inter_word"
             android:maxLines="6"
             android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
             android:textColor="@color/lightText"
             android:textSize="14sp"
-            app:layout_constraintEnd_toStartOf="@+id/review_dislike_button"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/reviewer_name" />
+            app:layout_constraintTop_toBottomOf="@+id/review_food_rating" />
 
         <ImageButton
             android:id="@+id/review_like_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
             android:background='?attr/selectableItemBackgroundBorderless'
             android:paddingHorizontal="8dp"
             android:paddingVertical="8dp"
             android:tint="@color/lightText"
-            app:layout_constraintBottom_toTopOf="@+id/review_rating"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/review_dislike_button"
+            app:layout_constraintEnd_toStartOf="@+id/review_rating"
+            app:layout_constraintTop_toTopOf="@+id/review_dislike_button"
             app:srcCompat="@drawable/ic_thumb_up_black_24dp" />
 
         <ImageButton
@@ -109,21 +111,20 @@
             android:paddingHorizontal="8dp"
             android:paddingVertical="8dp"
             android:tint="@color/lightText"
-            app:layout_constraintEnd_toEndOf="@+id/review_like_button"
-            app:layout_constraintStart_toStartOf="@+id/review_like_button"
-            app:layout_constraintTop_toBottomOf="@+id/review_rating"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/review"
             app:srcCompat="@drawable/ic_thumb_down_black_24dp" />
 
         <TextView
             android:id="@+id/review_rating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
             android:text="+106"
             android:textColor="@color/primaryText"
-            app:layout_constraintBottom_toBottomOf="@+id/review"
-            app:layout_constraintEnd_toEndOf="@+id/review_like_button"
-            app:layout_constraintStart_toStartOf="@+id/review_like_button"
-            app:layout_constraintTop_toTopOf="@+id/review" />
+            app:layout_constraintBottom_toBottomOf="@+id/review_dislike_button"
+            app:layout_constraintEnd_toStartOf="@+id/review_dislike_button"
+            app:layout_constraintTop_toTopOf="@+id/review_dislike_button" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
