@@ -37,6 +37,7 @@ class SuggestionsViewHolder(val view: View): RecyclerView.ViewHolder(view){
         view.suggestion_restaurant_address.text = restaurant.address
         view.suggestion_restaurant_price.text = restaurant.price.toString()
         view.suggestion_restaurant_description.text = restaurant.description
+        view.rating.text = restaurant.rate.toString()
         PicassoImageLoader.loadImage(restaurant.picture, view.suggestion_restaurant_picture)
 
         view.suggestions_card_view.setOnClickListener {

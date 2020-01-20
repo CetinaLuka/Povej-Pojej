@@ -61,12 +61,15 @@ class MainScreen : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         FirebaseDatabase.ctx = activity!!.applicationContext
-        
+
         restaurantDetailsViewModel = ViewModelProviders.of(activity!!)[RestaurantDetailsViewModel::class.java]
         suggestedRestaurantsViewModel = ViewModelProviders.of(activity!!)[SuggestedRestaurantsViewModel::class.java]
 
-        suggestedRestaurantsViewModel.getRestaurants().observe(this, Observer { restaurants ->
+        suggestedRestaurantsViewModel.getSuggestedRestaurants().observe(this, Observer { restaurants ->
             setupSuggestedRestaurantsList(restaurants)
+        })
+
+        suggestedRestaurantsViewModel.getNearbyRestaurants().observe(this, Observer { restaurants ->
             setupSecondSuggestedRestaurantsList(restaurants)
         })
 
