@@ -267,26 +267,12 @@
                     android:layout_height="0dp"
                     android:layout_marginStart="4dp"
                     android:gravity="center"
-                    android:text="4,9"
                     android:textColor="@color/lightText"
                     android:textSize="14sp"
                     android:transitionName="restaurant_rating"
                     app:layout_constraintBottom_toBottomOf="@+id/details_restaurant_star_icon"
                     app:layout_constraintStart_toEndOf="@+id/details_restaurant_star_icon"
                     app:layout_constraintTop_toTopOf="@+id/details_restaurant_star_icon" />
-
-                <TextView
-                    android:id="@+id/details_restaurant_num_of_reviews"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
-                    android:text="(115)"
-                    android:textColor="@color/lightText"
-                    android:textSize="14sp"
-                    android:transitionName="restaurant_num_of_reviews"
-                    app:layout_constraintBottom_toBottomOf="@+id/details_restaurant_rating"
-                    app:layout_constraintStart_toEndOf="@+id/details_restaurant_rating"
-                    app:layout_constraintTop_toTopOf="@+id/details_restaurant_rating" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/restaurant_details_map"

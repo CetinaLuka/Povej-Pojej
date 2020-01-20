@@ -130,7 +130,7 @@
                         android:text="2,80"
                         android:textColor="@color/primaryText"
                         android:textStyle="bold"
-                        app:layout_constraintBottom_toBottomOf="@+id/search_restaurant_num_of_reviews"
+                        app:layout_constraintBottom_toBottomOf="@+id/search_restaurant_rating"
                         app:layout_constraintEnd_toStartOf="@+id/search_restaurant_currency" />
 
                     <TextView
@@ -180,16 +180,6 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/search_restaurant_rating" />
 
-                    <TextView
-                        android:id="@+id/search_restaurant_num_of_reviews"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="4dp"
-                        android:text="(200)"
-                        android:textSize="12sp"
-                        app:layout_constraintBottom_toBottomOf="@+id/search_restaurant_rating"
-                        app:layout_constraintStart_toEndOf="@+id/search_restaurant_rating"
-                        app:layout_constraintTop_toTopOf="@+id/search_restaurant_rating" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>

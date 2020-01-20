@@ -81,6 +81,7 @@ class RestaurantDetails : Fragment() {
         details_restaurant_address.text = restaurant.address
         details_restaurant_description.text = restaurant.description
         details_restaurant_price.text = restaurant.price.toString()
+        details_restaurant_rating.text = restaurant.rate.toString()
 
         details_restaurant_food_rating_stars.rating = restaurant.rateFood.toFloat()
         details_restaurant_offer_rating_stars.rating = restaurant.rateOffer.toFloat()

@@ -32,7 +32,6 @@ class SearchResultsAdapter(list: List<Restaurant>, val clickListener: (Restauran
         holder.itemView.search_restaurant_currency.transitionName = "restaurant_currency$position"
         holder.itemView.search_restaurant_description.transitionName = "restaurant_description$position"
         holder.itemView.search_restaurant_distance.transitionName = "restaurant_distance$position"
-        holder.itemView.search_restaurant_num_of_reviews.transitionName = "restaurant_num_of_reviews$position"
         holder.itemView.search_restaurant_price.transitionName = "restaurant_price$position"
         holder.itemView.search_restaurant_rating.transitionName = "restaurant_rating$position"
         holder.itemView.search_restaurant_working_hours.transitionName = "restaurant_working_hours$position"
@@ -53,6 +52,7 @@ class SearchResultsViewHolder(val view: View): RecyclerView.ViewHolder(view){
         view.search_restaurant_address.text = restaurant.address
         view.search_restaurant_description.text = restaurant.description
         view.search_restaurant_distance.text = restaurant.distance.toString()
+        view.search_restaurant_rating.text = restaurant.rate.toString()
         PicassoImageLoader.loadImage(restaurant.picture, view.search_restaurant_picture)
         if(!restaurant.isOpenNow()){
             Picasso.get().load(R.drawable.closed_circle).into(view.search_open_indicator)
@@ -67,7 +67,6 @@ class SearchResultsViewHolder(val view: View): RecyclerView.ViewHolder(view){
                 it.search_restaurant_currency to "restaurant_currency",
                 it.search_restaurant_description to "restaurant_description",
                 it.search_restaurant_distance to "restaurant_distance",
-                it.search_restaurant_num_of_reviews to "restaurant_num_of_reviews",
                 it.search_restaurant_price to "restaurant_price",
                 it.search_restaurant_rating to "restaurant_rating",
                 it.search_restaurant_working_hours to "restaurant_working_hours",
