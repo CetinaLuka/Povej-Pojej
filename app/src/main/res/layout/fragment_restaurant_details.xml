@@ -279,6 +279,8 @@
                     android:textColor="@color/lightText"
                     android:textSize="14sp"
                     android:transitionName="restaurant_rating"
+                    android:maxLength="3"
+                    android:maxLines="1"
                     app:layout_constraintBottom_toBottomOf="@+id/details_restaurant_star_icon"
                     app:layout_constraintStart_toEndOf="@+id/details_restaurant_star_icon"
                     app:layout_constraintTop_toTopOf="@+id/details_restaurant_star_icon" />

@@ -20,6 +20,7 @@ import androidx.transition.TransitionInflater
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.firebase.auth.FirebaseAuth
 import com.squareup.picasso.Picasso
 import feri.itk.pojejinpovej.Data.Models.Restaurant
 import feri.itk.pojejinpovej.Data.Models.Review
@@ -28,6 +29,7 @@ import feri.itk.pojejinpovej.R
 import feri.itk.pojejinpovej.UI.Adapters.RestaurantReviewsAdapter
 import feri.itk.pojejinpovej.Util.PicassoImageLoader
 import feri.itk.pojejinpovej.Util.RecyclerViewItemDecoration
+import kotlinx.android.synthetic.main.fragment_main_screen.*
 import kotlinx.android.synthetic.main.fragment_restaurant_details.*
 import kotlinx.android.synthetic.main.review_alert.view.*
 import kotlinx.android.synthetic.main.suggestion_recycler_row.view.*
@@ -43,6 +45,7 @@ class RestaurantDetails : Fragment() {
     lateinit var restaurantViewModel: RestaurantDetailsViewModel
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var mCurrentLocation: Location
+    private lateinit var firebaseAuth: FirebaseAuth
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -73,6 +76,13 @@ class RestaurantDetails : Fragment() {
         addReviewFAB.setOnClickListener {
             openReviewAlert()
         }
+
+        firebaseAuth = FirebaseAuth.getInstance()
+
+        if(firebaseAuth.currentUser==null){
+            addReviewFAB.visibility=View.INVISIBLE
+        }
+
         /*fusedLocationClient.lastLocation.addOnSuccessListener { location: Location? ->
             mCurrentLocation = location!!
         }*/
